@@ -14,8 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>
-        <Providers>{children}</Providers>
+      <body className="h-screen overflow-hidden">
+        <Providers>
+          {children}
+          
+        </Providers>
       </body>
     </html>
   );

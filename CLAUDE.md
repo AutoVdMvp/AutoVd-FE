@@ -16,7 +16,7 @@ Before implementing:
 
 - **State layer placement**: Which FSD layer does this belong to? (features? entities? shared?)
 - **If multiple approaches exist, present them** - don't pick silently.
-- **If a simpler approach exists, say so.** 
+- **If a simpler approach exists, say so.**
 - **If something is unclear, stop.** Name what's confusing. Ask.
 
 ---
@@ -220,51 +220,51 @@ project-root/
 
 ```tsx
 // app → can import all layers
-import { QueryProvider } from '@/app/providers';
-import { HomePage } from '@/views/home';
-import { Header } from '@/widgets/header';
-import { LoginForm } from '@/features/auth/login';
-import { UserCard } from '@/entities/user';
-import { Button } from '@/shared/ui/button';
+import { QueryProvider } from "@/app/providers";
+import { HomePage } from "@/views/home";
+import { Header } from "@/widgets/header";
+import { LoginForm } from "@/features/auth/login";
+import { UserCard } from "@/entities/user";
+import { Button } from "@/shared/ui/button";
 
 // views → widgets, features, entities, shared
-import { DashboardStats } from '@/widgets/dashboard-stats';
-import { LoginForm } from '@/features/auth/login';
-import { UserCard } from '@/entities/user';
-import { Button } from '@/shared/ui/button';
+import { DashboardStats } from "@/widgets/dashboard-stats";
+import { LoginForm } from "@/features/auth/login";
+import { UserCard } from "@/entities/user";
+import { Button } from "@/shared/ui/button";
 
 // widgets → features, entities, shared
-import { AddToCartButton } from '@/features/cart/add-to-cart';
-import { ProductCard } from '@/entities/product';
-import { Button } from '@/shared/ui/button';
+import { AddToCartButton } from "@/features/cart/add-to-cart";
+import { ProductCard } from "@/entities/product";
+import { Button } from "@/shared/ui/button";
 
 // features → entities, shared
-import { UserAvatar } from '@/entities/user';
-import { Button } from '@/shared/ui/button';
+import { UserAvatar } from "@/entities/user";
+import { Button } from "@/shared/ui/button";
 
 // entities → shared only
-import { Button } from '@/shared/ui/button';
-import { apiClient } from '@/shared/api';
+import { Button } from "@/shared/ui/button";
+import { apiClient } from "@/shared/api";
 
 // shared → external packages only
-import { clsx } from 'clsx';
-import { z } from 'zod';
+import { clsx } from "clsx";
+import { z } from "zod";
 ```
 
 ### ❌ Forbidden Imports
 
 ```tsx
 // ❌ Same layer (sideways)
-import { LoginForm } from '@/features/auth/login';  // from another feature
-import { ProductCard } from '@/entities/product';   // from another entity
+import { LoginForm } from "@/features/auth/login"; // from another feature
+import { ProductCard } from "@/entities/product"; // from another entity
 
 // ❌ Upper layer
-import { Header } from '@/widgets/header';          // from features
-import { HomePage } from '@/views/home';            // from widgets
+import { Header } from "@/widgets/header"; // from features
+import { HomePage } from "@/views/home"; // from widgets
 
 // ❌ Direct segment import (bypass Public API)
-import { UserCard } from '@/entities/user/ui/UserCard';  // Wrong!
-import { UserCard } from '@/entities/user';              // Correct!
+import { UserCard } from "@/entities/user/ui/UserCard"; // Wrong!
+import { UserCard } from "@/entities/user"; // Correct!
 ```
 
 ---
@@ -275,20 +275,20 @@ import { UserCard } from '@/entities/user';              // Correct!
 
 ```tsx
 // entities/user/index.ts
-export { UserCard } from './ui/UserCard';
-export { UserAvatar } from './ui/UserAvatar';
-export { getUser, updateUser } from './api/userApi';
-export { useUser, useUpdateUser } from './api/queries';
-export { useUserStore } from './model/store';
-export type { User, UserRole } from './model/types';
-export { userSchema } from './model/schema';
+export { UserCard } from "./ui/UserCard";
+export { UserAvatar } from "./ui/UserAvatar";
+export { getUser, updateUser } from "./api/userApi";
+export { useUser, useUpdateUser } from "./api/queries";
+export { useUserStore } from "./model/store";
+export type { User, UserRole } from "./model/types";
+export { userSchema } from "./model/schema";
 
 // ✅ Correct external import
-import { UserCard, type User, useUser } from '@/entities/user';
+import { UserCard, type User, useUser } from "@/entities/user";
 
 // ❌ Wrong - bypassing Public API
-import { UserCard } from '@/entities/user/ui/UserCard';
-import type { User } from '@/entities/user/model/types';
+import { UserCard } from "@/entities/user/ui/UserCard";
+import type { User } from "@/entities/user/model/types";
 ```
 
 ---
@@ -321,7 +321,7 @@ feature-name/
 
 ```tsx
 // app/dashboard/page.tsx
-import { DashboardPage } from '@/views/dashboard';
+import { DashboardPage } from "@/views/dashboard";
 
 export default function Page() {
   return <DashboardPage />;
@@ -332,8 +332,8 @@ export default function Page() {
 
 ```tsx
 // src/views/dashboard/ui/DashboardPage.tsx
-import { DashboardStats } from '@/widgets/dashboard-stats';
-import { Header } from '@/widgets/header';
+import { DashboardStats } from "@/widgets/dashboard-stats";
+import { Header } from "@/widgets/header";
 
 export function DashboardPage() {
   return (
@@ -363,12 +363,12 @@ Place in **entities/[entity]/api/**:
 
 ```tsx
 // entities/user/api/queries.ts
-import { useQuery } from '@tanstack/react-query';
-import { getUser } from './userApi';
+import { useQuery } from "@tanstack/react-query";
+import { getUser } from "./userApi";
 
 export function useUser(id: string) {
   return useQuery({
-    queryKey: ['user', id],
+    queryKey: ["user", id],
     queryFn: () => getUser(id),
   });
 }
@@ -380,7 +380,7 @@ Place in **entities/[entity]/model/store.ts** or **features/[feature]/model/stor
 
 ```tsx
 // entities/user/model/store.ts
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface UserStore {
   currentUser: User | null;
@@ -399,7 +399,7 @@ Place in **shared/model/** or **widgets/[widget]/model/**:
 
 ```tsx
 // shared/model/uiStore.ts
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface UIStore {
   isSidebarOpen: boolean;
@@ -422,13 +422,13 @@ export const useUIStore = create<UIStore>((set) => ({
 // features/auth/login/ui/LoginForm.tsx
 "use client";
 
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { useLogin } from '../model/useLogin';
+import { Button } from "@/shared/ui/button";
+import { Input } from "@/shared/ui/input";
+import { useLogin } from "../model/useLogin";
 
 export function LoginForm() {
   const { login, isLoading } = useLogin();
-  
+
   return (
     <form onSubmit={login}>
       <Input name="email" />
@@ -445,8 +445,8 @@ export function LoginForm() {
 
 ```tsx
 // entities/user/ui/UserCard.tsx
-import { Avatar } from '@/shared/ui/avatar';
-import type { User } from '../model/types';
+import { Avatar } from "@/shared/ui/avatar";
+import type { User } from "../model/types";
 
 interface UserCardProps {
   user: User;
@@ -469,13 +469,13 @@ export function UserCard({ user }: UserCardProps) {
 
 ```tsx
 // widgets/header/ui/Header.tsx
-import { UserMenu } from './UserMenu';
-import { Logo } from '@/shared/ui/logo';
-import { useUser } from '@/entities/user';
+import { UserMenu } from "./UserMenu";
+import { Logo } from "@/shared/ui/logo";
+import { useUser } from "@/entities/user";
 
 export function Header() {
   const { data: user } = useUser();
-  
+
   return (
     <header className="flex justify-between items-center p-4">
       <Logo />
@@ -515,16 +515,16 @@ Is it reusable, domain-agnostic?           → shared/
 
 ```tsx
 // ❌ Bad: Feature importing another feature
-import { AddToCartButton } from '@/features/cart/add-to-cart';
+import { AddToCartButton } from "@/features/cart/add-to-cart";
 ```
 
 ### ✅ Do: Lift to Widget or View
 
 ```tsx
 // widgets/product-item/ui/ProductItem.tsx
-import { ProductCard } from '@/entities/product';
-import { AddToCartButton } from '@/features/cart/add-to-cart';
-import { RatingButton } from '@/features/rating/rate-product';
+import { ProductCard } from "@/entities/product";
+import { AddToCartButton } from "@/features/cart/add-to-cart";
+import { RatingButton } from "@/features/rating/rate-product";
 
 export function ProductItem({ product }: { product: Product }) {
   return (
@@ -576,32 +576,37 @@ Before creating/modifying code:
 ## Common Anti-Patterns (FSD)
 
 ### ❌ Bypassing Public API
+
 ```tsx
-import { UserCard } from '@/entities/user/ui/UserCard';  // Wrong
-import { UserCard } from '@/entities/user';              // Correct
+import { UserCard } from "@/entities/user/ui/UserCard"; // Wrong
+import { UserCard } from "@/entities/user"; // Correct
 ```
 
 ### ❌ Cross-Feature Imports
+
 ```tsx
 // features/auth/login/ui/LoginForm.tsx
-import { RegisterButton } from '@/features/auth/register';  // Wrong!
+import { RegisterButton } from "@/features/auth/register"; // Wrong!
 ```
 
 ### ❌ Upward Imports
+
 ```tsx
 // entities/user/ui/UserCard.tsx
-import { LoginForm } from '@/features/auth/login';  // Wrong! Going up
+import { LoginForm } from "@/features/auth/login"; // Wrong! Going up
 ```
 
 ### ❌ Shared Importing from Layers
+
 ```tsx
 // shared/ui/button/Button.tsx
-import { useUser } from '@/entities/user';  // Wrong! Shared can't import layers
+import { useUser } from "@/entities/user"; // Wrong! Shared can't import layers
 ```
 
 ---
 
 **FSD Guidelines are working if:**
+
 - Clear layer boundaries
 - No circular dependencies
 - Easy to find where code lives
