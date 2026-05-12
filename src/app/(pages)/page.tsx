@@ -7,10 +7,11 @@ export default function Home() {
 
   const handleSubmit = (text: string) => {
     setItems([...items, text]);
+    console.log(text);
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+    <main className="flex flex-col items-center justify-center min-h-screen p-24">
       <h1 className="text-xl font-bold">AutoVD</h1>
       <div className="flex flex-col m-3.5 gap-3">
         <div className="relative">
