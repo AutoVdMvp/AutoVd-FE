@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@layer utilities {
+  [contenteditable]:empty:before {
+    content: attr(data-placeholder);
+    font-size: 12px;
+    color: rgb(107, 114, 128);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

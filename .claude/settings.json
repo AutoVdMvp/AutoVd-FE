@@ -1,0 +1,127 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "comment": "Auto-format TypeScript/JavaScript files with Prettier after Write/Edit",
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx prettier --write \"$CLAUDE_TOOL_INPUT_FILE_PATH\" 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "comment": "Auto-fix ESLint issues after Write/Edit",
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx eslint --fix \"$CLAUDE_TOOL_INPUT_FILE_PATH\" 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "comment": "Run TypeScript type check on .ts and .tsx files",
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ \"$CLAUDE_TOOL_INPUT_FILE_PATH\" =~ \\.(ts|tsx)$ ]]; then npx tsc --noEmit --pretty false \"$CLAUDE_TOOL_INPUT_FILE_PATH\" 2>&1 | head -20 || true; fi"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "comment": "Block dangerous bash commands",
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous-commands.sh"
+          }
+        ]
+      },
+      {
+        "comment": "Validate component structure before creation",
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/validate-component.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "comment": "Load project context and recent changes",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "comment": "Ensure code quality before marking task complete",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/pre-stop-validation.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "Write": [
+      {
+        "allow": true,
+        "pattern": "**/*.{ts,tsx,js,jsx,json,md,css,scss}"
+      },
+      {
+        "allow": false,
+        "pattern": "node_modules/**"
+      },
+      {
+        "allow": false,
+        "pattern": ".next/**"
+      },
+      {
+        "allow": false,
+        "pattern": ".git/**"
+      }
+    ],
+    "Edit": [
+      {
+        "allow": true,
+        "pattern": "**/*.{ts,tsx,js,jsx,json,md,css,scss}"
+      }
+    ],
+    "Bash": [
+      {
+        "allow": true,
+        "pattern": "npm|pnpm|yarn"
+      },
+      {
+        "allow": true,
+        "pattern": "git"
+      },
+      {
+        "allow": false,
+        "pattern": "rm -rf"
+      },
+      {
+        "allow": false,
+        "pattern": "sudo"
+      }
+    ]
+  },
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
