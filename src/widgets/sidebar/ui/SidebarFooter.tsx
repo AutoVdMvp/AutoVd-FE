@@ -8,7 +8,7 @@ export function SidebarFooter() {
 
   return (
     <div
-      className={`flex items-center h-20 gap-3 px-4 pb-4 text-sm border-t border-gray-300 shrink-0 ${isSidebarOpen ? "justify-between" : "justify-center"}`}
+      className={`flex items-center h-20 gap-3 px-4 pb-4 text-sm border-t border-warm-200 shrink-0 ${isSidebarOpen ? "justify-between" : "justify-center"}`}
     >
       <div className="flex items-center gap-3 shrink-0">
         <UserIcon className="w-6 h-6 shrink-0" />

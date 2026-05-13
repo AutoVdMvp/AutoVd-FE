@@ -11,14 +11,16 @@ export function SidebarHeader() {
       className={`flex items-center ${isSidebarOpen ? "justify-between" : "justify-center"} gap-3`}
     >
       {isSidebarOpen && (
-        <div className="text-xl font-bold text-amber-300 shrink-0">Auto VD</div>
+        <div className="text-xl font-bold shrink-0 text-peach-deep">
+          Auto VD
+        </div>
       )}
       <button
         onClick={toggleSidebar}
         className="transition-opacity hover:opacity-80 shrink-0"
         aria-label="Toggle sidebar"
       >
-        <SidebarIcon className="w-7 h-7" />
+        <SidebarIcon className="icon" />
       </button>
     </div>
   );
