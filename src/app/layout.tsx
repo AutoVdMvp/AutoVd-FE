@@ -15,10 +15,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="h-screen overflow-hidden">
-        <Providers>
-          {children}
-          
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
