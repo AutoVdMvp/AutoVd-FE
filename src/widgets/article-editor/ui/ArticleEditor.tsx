@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { EditorInput } from "@/shared/ui/editor-input";
 import type { ArticleEditorProps } from "../model/types";
 
 export function ArticleEditor({ onSubmit }: ArticleEditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   const submitText = () => {
     const text = editorRef.current?.innerText.trim() || "";
@@ -24,7 +25,11 @@ export function ArticleEditor({ onSubmit }: ArticleEditorProps) {
     }
   };
   return (
-    <div className="flex flex-col w-full gap-3 overflow-y-auto transition-colors duration-300 border-2 rounded-lg outline-none border-peach-pastel/50 hover:border-peach-pastel scrollbar-none">
+    <div
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
+      className={`flex flex-col w-full gap-3 overflow-y-auto transition-colors duration-300 border-2 rounded-lg outline-none scrollbar-none ${isFocused ? "border-peach-pastel" : "border-peach-pastel/50 hover:border-peach-pastel"}`}
+    >
       <EditorInput
         ref={editorRef}
         placeholder="기사 링크를 입력해주세요"
