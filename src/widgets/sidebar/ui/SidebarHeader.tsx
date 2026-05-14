@@ -1,6 +1,6 @@
 "use client";
 
-import { SidebarIcon } from "@/shared/icons/sidebarIcon";
+import { SidebarIcon } from "@/shared/icons/SidebarIcon";
 import { useUIStore } from "@/shared/model/uiStore";
 
 export function SidebarHeader() {
@@ -8,7 +8,7 @@ export function SidebarHeader() {
 
   return (
     <div
-      className={`flex items-center ${isSidebarOpen ? "justify-between" : "justify-center"} gap-3`}
+      className={`h-12 flex items-center ${isSidebarOpen ? "justify-between" : "justify-center"} gap-3 px-2`}
     >
       {isSidebarOpen && (
         <div className="text-xl font-bold shrink-0 text-peach-deep">

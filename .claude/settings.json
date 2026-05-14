@@ -22,12 +22,12 @@
         ]
       },
       {
-        "comment": "Run TypeScript type check on .ts and .tsx files",
+        "comment": "Run full TypeScript project type check on .ts and .tsx files",
         "matcher": "Write|Edit",
         "hooks": [
           {
             "type": "command",
-            "command": "if [[ \"$CLAUDE_TOOL_INPUT_FILE_PATH\" =~ \\.(ts|tsx)$ ]]; then npx tsc --noEmit --pretty false \"$CLAUDE_TOOL_INPUT_FILE_PATH\" 2>&1 | head -20 || true; fi"
+            "command": "if [[ \"$CLAUDE_TOOL_INPUT_FILE_PATH\" =~ \\.(ts|tsx)$ ]]; then npx tsc --noEmit 2>&1 | head -30 || true; fi"
           }
         ]
       }
@@ -50,6 +50,16 @@
           {
             "type": "command",
             "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/validate-component.sh"
+          }
+        ]
+      },
+      {
+        "comment": "Validate FSD import rules before Write/Edit",
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/validate-fsd-imports.sh"
           }
         ]
       }

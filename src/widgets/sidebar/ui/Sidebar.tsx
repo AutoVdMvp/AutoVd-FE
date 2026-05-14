@@ -6,12 +6,13 @@ import { SidebarHeader } from "./SidebarHeader";
 import { SidebarNav } from "./SidebarNav";
 import { SidebarFooter } from "./SidebarFooter";
 import type { SidebarNavItem } from "../model/types";
-import { HomeIcon } from "@/shared/icons/homeIcon";
+import { HomeIcon } from "@/shared/icons/HomeIcon";
+import { VideoIcon } from "@/shared/icons/VideoIcon";
 
 const DEFAULT_NAV_ITEMS: SidebarNavItem[] = [
-  { id: "1", icon: <HomeIcon className="icon" />, label: "내 정보" },
-  { id: "2", icon: <HomeIcon className="icon" />, label: "내 정보" },
-  { id: "3", icon: <HomeIcon className="icon" />, label: "내 정보" },
+  { id: "1", icon: <HomeIcon className="icon" />, label: "홈" },
+  { id: "2", icon: <VideoIcon className="icon" />, label: "영상 목록" },
+  { id: "3", icon: <HomeIcon className="icon" />, label: "그 외 무언가" },
 ];
 
 export function Sidebar() {
@@ -27,7 +28,7 @@ export function Sidebar() {
         isSidebarOpen ? "w-[288px]" : "w-12",
       )}
     >
-      <div className="flex flex-col h-full gap-8 px-4 py-4">
+      <div className="flex flex-col h-full gap-8 py-4">
         <SidebarHeader />
         <SidebarNav items={DEFAULT_NAV_ITEMS} />
       </div>

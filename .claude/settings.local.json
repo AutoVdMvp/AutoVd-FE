@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Remove-Item \"c:\\\\Users\\\\박요셉\\\\개발모음\\\\autovd-fe\\\\.claude\\\\skills\\\\component-generator.md\")"
+    ]
+  }
+}
