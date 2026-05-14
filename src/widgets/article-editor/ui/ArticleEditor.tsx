@@ -24,7 +24,7 @@ export function ArticleEditor({ onSubmit }: ArticleEditorProps) {
     }
   };
   return (
-    <div className="flex flex-col w-full gap-3 overflow-y-auto border-2 border-gray-300 rounded-lg outline-none scrollbar-none">
+    <div className="flex flex-col w-full gap-3 overflow-y-auto transition-colors duration-300 border-2 rounded-lg outline-none border-peach-pastel/50 hover:border-peach-pastel scrollbar-none">
       <EditorInput
         ref={editorRef}
         placeholder="기사 링크를 입력해주세요"

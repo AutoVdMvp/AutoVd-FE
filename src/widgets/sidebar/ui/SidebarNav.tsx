@@ -19,14 +19,14 @@ export function SidebarNav({ items }: SidebarNavProps) {
         {items.map((item) => {
           const isActive = pathname === item.href;
           return (
-            <div key={item.id} className={`${isSidebarOpen && "px-2"}`}>
+            <div key={item.id} className={`py-1 ${isSidebarOpen && "px-2"}`}>
               <Link
                 href={item.href}
-                className={`flex flex-row items-center justify-start w-full gap-2 rounded-lg hover:-translate-y-1 transition-all duration-300 ${
+                className={`flex flex-row items-center justify-start w-full gap-2 rounded-lg transition-all duration-300 ${
                   isActive
-                    ? "text-warm-500 bg-peach-pastel/40"
-                    : "text-text-primary"
-                } ${isSidebarOpen && "hover:bg-peach-pastel/25 hover:text-warm-500"}`}
+                    ? "text-warm-500 bg-peach-pastel/40 cursor-default"
+                    : `text-text-primary hover:-translate-y-1 ${isSidebarOpen && "hover:bg-peach-pastel/25 hover:text-warm-500"}`
+                }`}
               >
                 <div
                   className={`flex items-center pl-1 py-1 shrink-0 rounded-lg ${isSidebarOpen ? "" : "hover:bg-peach-pastel/25 translate-x-2"}`}
