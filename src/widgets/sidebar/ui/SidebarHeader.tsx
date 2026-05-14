@@ -17,7 +17,7 @@ export function SidebarHeader() {
       )}
       <button
         onClick={toggleSidebar}
-        className="transition-opacity hover:opacity-80 shrink-0"
+        className="p-1 duration-300 rounded-lg cursor-pointer transition-color hover:text-warm-500 hover:bg-peach-pastel/25 shrink-0"
         aria-label="Toggle sidebar"
       >
         <SidebarIcon className="icon" />

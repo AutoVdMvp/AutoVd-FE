@@ -16,7 +16,7 @@ export function SidebarNav({ items }: SidebarNavProps) {
         {items.map((item) => (
           <div key={item.id} className={`${isSidebarOpen && "px-2"}`}>
             <div
-              className={`flex flex-row items-center justify-start w-full gap-2 cursor-pointer rounded-lg hover:-translate-y-1 transition-transform duration-200 text-text-primary ${isSidebarOpen && "hover:bg-peach-pastel/25 hover:text-warm-500 transition-colors duration-400  p-1 "}`}
+              className={`flex flex-row items-center justify-start w-full gap-2 cursor-pointer rounded-lg hover:-translate-y-1  transition-all duration-300 text-text-primary ${isSidebarOpen && "hover:bg-peach-pastel/25 hover:text-warm-500 p-1 "}`}
             >
               <div
                 className={`flex items-center shrink-0 rounded-lg ${isSidebarOpen ? "" : "hover:bg-peach-pastel/25 p-1 translate-x-2 "}`}
