@@ -67,12 +67,8 @@ html {
 }
 
 a {
-  color: var(--color-lavender-deep);
+  color: none;
   text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 img {

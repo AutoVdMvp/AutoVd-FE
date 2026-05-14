@@ -1,5 +1,11 @@
 import { ReactNode } from "react";
+import { Sidebar } from "@/widgets/sidebar";
 
 export default function Layout({ children }: { children: ReactNode }) {
-  return <div className="h-full overflow-hidden">{children}</div>;
+  return (
+    <main className="relative flex h-full overflow-hidden">
+      <Sidebar />
+      <div className="flex-1 overflow-auto">{children}</div>
+    </main>
+  );
 }
