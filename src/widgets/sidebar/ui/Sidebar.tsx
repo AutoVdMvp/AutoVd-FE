@@ -28,7 +28,7 @@ export function Sidebar() {
         isSidebarOpen ? "w-[288px]" : "w-12",
       )}
     >
-      <div className="flex flex-col h-full gap-8 py-4">
+      <div className="flex flex-col h-full gap-6 py-4">
         <SidebarHeader />
         <SidebarNav items={DEFAULT_NAV_ITEMS} />
       </div>
