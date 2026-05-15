@@ -13,7 +13,7 @@ export function SidebarHeader() {
     >
       {isSidebarOpen && (
         <div
-          className={`p-1 text-xl font-bold shrink-0 text-peach-deep ${Font.kavoon.className}`}
+          className={`p-1 text-xl font-bold shrink-0 text-peach-deep ${Font.kavoon.className} cursor-default`}
         >
           Auto VD
         </div>
