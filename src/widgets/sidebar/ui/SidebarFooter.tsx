@@ -12,7 +12,7 @@ export function SidebarFooter() {
     >
       <div className="flex items-center gap-4 shrink-0">
         <div
-          className={`flex items-center justify-center w-10 h-10 transition-all duration-300 rounded-full cursor-default bg-black/75 group-hover:shadow-xl ${isSidebarOpen ? "" : "-translate-x-1"}`}
+          className={`flex items-center justify-center w-10 h-10 transition-all duration-300 rounded-full cursor-default bg-black/75 group-hover:shadow-xl ${isSidebarOpen ? "" : "-translate-x-1.25"}`}
         >
           <span className="font-bold text-white ">JP</span>
         </div>
