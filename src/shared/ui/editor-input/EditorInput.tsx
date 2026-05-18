@@ -20,7 +20,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
         aria-multiline="true"
         tabIndex={0}
         onKeyDown={onKeyDown}
-        className="text-lg leading-6 w-150 p-2.5 min-h-12 border-none outline-none transition-colors duration-200 whitespace-pre-wrap wrap-break-word"
+        className="lg:text-lg md:text-base text-sm md:leading-6 leading-3 lg:w-150 md:w-100 w-60 p-1.5 md:min-h-12 min-h-10 md:p-2.5 border-none outline-none transition-colors duration-200 whitespace-pre-wrap wrap-break-word"
       />
     );
   },

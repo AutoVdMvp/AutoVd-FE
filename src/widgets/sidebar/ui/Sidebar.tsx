@@ -33,9 +33,10 @@ export function Sidebar() {
     <div
       id="sidebar"
       className={cn(
-        "flex flex-col justify-between h-full bg-transparent",
+        "hidden md:flex flex-col justify-between h-full bg-transparent",
         "border-r border-warm-200 shadow-2xl",
         "transition-all duration-300 overflow-hidden",
+        // tablet: w-12 고정, desktop: toggle 상태에 따라
         isSidebarOpen ? "w-[288px]" : "w-12",
       )}
     >

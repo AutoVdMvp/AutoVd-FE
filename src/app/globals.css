@@ -6,6 +6,10 @@
 @source "../shared/**/*.{ts,tsx}";
 
 @theme {
+  /* ── 브레이크포인트 ── */
+  --breakpoint-md: 450px; /* tablet: 450px~1024px */
+  --breakpoint-lg: 1024px; /* desktop: 1024px+ */
+
   /* ── 베이지 배경 팔레트 ── */
   --color-warm-50: #fdfaf6;
   --color-warm-100: #f8f2e8;
