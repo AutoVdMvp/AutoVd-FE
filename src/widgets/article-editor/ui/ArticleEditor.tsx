@@ -29,14 +29,14 @@ export function ArticleEditor({ onSubmit }: ArticleEditorProps) {
     <div
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
-      className={`flex flex-col w-full gap-3 overflow-y-auto transition-colors duration-300 border-2 rounded-lg outline-none scrollbar-none ${isFocused ? "border-peach-pastel" : "border-peach-pastel/50 hover:border-peach-pastel"}`}
+      className={`flex flex-col w-full md:gap-3 gap-2 overflow-hidden transition-colors duration-300 border-2 rounded-lg outline-none scrollbar-none ${isFocused ? "border-peach-pastel" : "border-peach-pastel/50 hover:border-peach-pastel"}`}
     >
       <EditorInput
         ref={editorRef}
         placeholder="기사 링크를 입력해주세요"
         onKeyDown={handleKeyDown}
       />
-      <div className="flex items-center justify-between px-4 py-2">
+      <div className="flex items-center justify-between px-2 py-1 md:px-4 md:py-2">
         <div>미래의 도구</div>
         <button
           onClick={submitText}

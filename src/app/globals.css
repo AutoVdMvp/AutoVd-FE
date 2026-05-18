@@ -91,4 +91,30 @@ img {
     font-size: 12px;
     color: rgb(107, 114, 128);
   }
+
+  /* ── 커스텀 스크롤바 ── */
+  .scrollbar-custom {
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-warm-300) transparent;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 50px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 6px; /* ← 스크롤바 너비 */
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: transparent; /* ← 트랙 배경색 */
+    border-radius: 40px; /* ← 트랙 반경 */
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: var(--color-warm-300); /* ← 썸 색 */
+    border-radius: 40px; /* ← 썸 반경 */
+    transition: background 0.2s ease;
+  }
 }
