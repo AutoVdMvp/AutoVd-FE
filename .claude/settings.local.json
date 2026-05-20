@@ -3,7 +3,8 @@
     "allow": [
       "Bash(Remove-Item \"c:\\\\Users\\\\박요셉\\\\개발모음\\\\autovd-fe\\\\.claude\\\\skills\\\\component-generator.md\")",
       "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\박요셉\\\\개발모음\\\\autovd-fe\\\\src\" -Recurse -Directory)",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "Bash(npx tsc *)"
     ]
   }
 }

@@ -16,7 +16,7 @@ export function MobileHeader() {
     >
       <button
         onClick={toggleMobileDrawer}
-        className="p-1 rounded-lg cursor-pointer transition-colors duration-300 hover:text-warm-500 hover:bg-peach-pastel/25"
+        className="p-1 transition-colors duration-300 rounded-lg cursor-pointer hover:text-warm-500 hover:bg-peach-pastel/25"
         aria-label="메뉴 열기"
       >
         <svg
@@ -34,7 +34,7 @@ export function MobileHeader() {
       </button>
       <div
         className={cn(
-          "text-xl font-bold text-peach-deep",
+          "text-xl font-bold text-peach-deep shrink-0",
           Font.kavoon.className,
         )}
       >
