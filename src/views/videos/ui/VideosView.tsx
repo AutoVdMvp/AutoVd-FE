@@ -91,7 +91,7 @@ export function VideosView() {
   return (
     <div className="flex flex-col h-full px-5 pt-5">
       <h1 className="text-xl font-bold shrink-0">영상 목록</h1>
-      <div className="h-px my-3 bg-gray-300 shrink-0" />
+      <div className="h-px my-3 bg-linear-to-br from-peach-pastel to-rose-pastel shrink-0" />
       <div className="flex-1 min-h-0 p-3">
         <div className="h-full p-2 overflow-y-auto rounded-lg glaze-bg scrollbar-none">
           <Suspense fallback={<VideoGridSkeleton />}>

@@ -5,6 +5,7 @@ export const httpInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   timeout: 10_000,
   headers: { "Content-Type": "application/json" },
+  withCredentials: true,
 });
 
 httpInstance.interceptors.request.use(
