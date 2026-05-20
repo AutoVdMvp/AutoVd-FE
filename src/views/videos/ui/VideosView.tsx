@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { VideoCard, type Video } from "@/entities/video";
-import { VideoModal } from "@/widgets/video-modal";
+import { lazy, Suspense, useState } from "react";
+import { VideoCard, VideoCardSkeleton, type Video } from "@/entities/video";
+
+// 초기 번들에서 분리 — 클릭 시 첫 로드
+const VideoModal = lazy(() =>
+  import("@/widgets/video-modal").then((m) => ({ default: m.VideoModal })),
+);
 
 const MOCK_VIDEOS: Video[] = [
   {
@@ -55,6 +59,32 @@ const MOCK_VIDEOS: Video[] = [
   },
 ];
 
+const SKELETON_COUNT = 8;
+
+function VideoGridSkeleton() {
+  return (
+    <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
+      {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+        <VideoCardSkeleton key={i} />
+      ))}
+    </div>
+  );
+}
+
+// API 연결 시 이 컴포넌트 안에서 useSuspenseQuery 사용
+function VideoGrid({ onSelect }: { onSelect: (video: Video) => void }) {
+  // const { data: videos } = useSuspenseQuery(videoQueries.list())
+  const videos = MOCK_VIDEOS;
+
+  return (
+    <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
+      {videos.map((video) => (
+        <VideoCard key={video.id} video={video} onClick={onSelect} />
+      ))}
+    </div>
+  );
+}
+
 export function VideosView() {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
@@ -64,22 +94,18 @@ export function VideosView() {
       <div className="h-px my-3 bg-gray-300 shrink-0" />
       <div className="flex-1 min-h-0 p-3">
         <div className="h-full p-2 overflow-y-auto rounded-lg glaze-bg scrollbar-none">
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
-            {MOCK_VIDEOS.map((video) => (
-              <VideoCard
-                key={video.id}
-                video={video}
-                onClick={setSelectedVideo}
-              />
-            ))}
-          </div>
+          <Suspense fallback={<VideoGridSkeleton />}>
+            <VideoGrid onSelect={setSelectedVideo} />
+          </Suspense>
         </div>
       </div>
 
-      <VideoModal
-        video={selectedVideo}
-        onClose={() => setSelectedVideo(null)}
-      />
+      <Suspense fallback={null}>
+        <VideoModal
+          video={selectedVideo}
+          onClose={() => setSelectedVideo(null)}
+        />
+      </Suspense>
     </div>
   );
 }

@@ -20,16 +20,20 @@ export function VideoModal({ video, onClose }: VideoModalProps) {
 
       <div
         className={cn(
-          "relative z-10 w-full max-w-2xl rounded-2xl overflow-hidden",
-          "glaze-bg shadow-2xl",
+          "relative z-10 w-full max-w-2xl rounded-2xl overflow-hidden ",
+          "glaze-bg",
         )}
       >
         <video
           controls
           autoPlay
-          className="w-full bg-black aspect-video"
-          src={video.videoUrl || undefined}
+          muted
+          playsInline
+          preload="none"
+          className="block w-full bg-black aspect-video"
         >
+          {video.videoUrl && <source src={video.videoUrl} type="video/mp4" />}
+          <track kind="captions" />
           영상을 재생할 수 없습니다.
         </video>
 
