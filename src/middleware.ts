@@ -8,13 +8,13 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isPublic = PUBLIC_PATHS.some((p) => pathname.startsWith(p));
   console.log("token, pathname", token, pathname);
-  if (!token && !isPublic) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  // if (!token && !isPublic) {
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
 
-  if (token && pathname === "/login") {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
+  // if (token && pathname === "/login") {
+  //   return NextResponse.redirect(new URL("/", request.url));
+  // }
 
   return NextResponse.next();
 }
