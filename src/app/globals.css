@@ -80,11 +80,6 @@ img {
   display: block;
 }
 
-.icon {
-  width: 24px;
-  height: 24px;
-}
-
 @layer utilities {
   [contenteditable]:empty:before {
     content: attr(data-placeholder);
@@ -125,4 +120,14 @@ img {
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
+}
+
+@utility icon {
+  width: 24px;
+  height: 24px;
+}
+
+@utility mini-icon {
+  width: 16px;
+  height: 16px;
 }
