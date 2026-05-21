@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { EditorInput } from "@/shared/ui/editor-input";
 import type { ArticleEditorProps } from "../model/types";
-import { EnterIcon } from "@/shared/icons/EnterIcon";
+import { Icons } from "@/shared/icons";
 
 export function ArticleEditor({ onSubmit }: ArticleEditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
@@ -42,7 +42,7 @@ export function ArticleEditor({ onSubmit }: ArticleEditorProps) {
           onClick={submitText}
           className="flex items-center justify-center p-2 text-white transition-all duration-300 rounded-full cursor-pointer py w-9 h-9 bg-peach-deep/50 hover:bg-peach-deep active:scale-95"
         >
-          <EnterIcon className="-translate-x-0.5 w-7 h-7 " />
+          <Icons.Enter className="-translate-x-0.5 w-7 h-7 " />
         </button>
       </div>
     </div>

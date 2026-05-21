@@ -1,7 +1,7 @@
 "use client";
 
 import { Font } from "@/shared/fonts";
-import { SidebarIcon } from "@/shared/icons/SidebarIcon";
+import { Icons } from "@/shared/icons";
 import { useUIStore } from "@/shared/model/uiStore";
 
 export function SidebarHeader() {
@@ -23,7 +23,7 @@ export function SidebarHeader() {
         className="p-1 duration-300 rounded-lg cursor-pointer transition-color hover:text-warm-500 hover:bg-peach-pastel/25 shrink-0"
         aria-label="Toggle sidebar"
       >
-        <SidebarIcon className="icon" />
+        <Icons.Sidebar className="icon" />
       </button>
     </div>
   );

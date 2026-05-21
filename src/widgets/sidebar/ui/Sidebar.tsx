@@ -6,21 +6,19 @@ import { SidebarHeader } from "./SidebarHeader";
 import { SidebarNav } from "./SidebarNav";
 import { SidebarFooter } from "./SidebarFooter";
 import type { SidebarNavItem } from "../model/types";
-import { HomeIcon } from "@/shared/icons/HomeIcon";
-import { VideoIcon } from "@/shared/icons/VideoIcon";
-import { UserIcon } from "@/shared/icons/UserIcon";
+import { Icons } from "@/shared/icons";
 
 const DEFAULT_NAV_ITEMS: SidebarNavItem[] = [
-  { id: "1", icon: <HomeIcon className="icon" />, label: "홈", href: "/" },
+  { id: "1", icon: <Icons.Home className="icon" />, label: "홈", href: "/" },
   {
     id: "2",
-    icon: <VideoIcon className="icon" />,
+    icon: <Icons.Video className="icon" />,
     label: "영상 목록",
     href: "/videos",
   },
   {
     id: "3",
-    icon: <UserIcon className="icon" />,
+    icon: <Icons.User className="icon" />,
     label: "그 외 무언가",
     href: "/other",
   },

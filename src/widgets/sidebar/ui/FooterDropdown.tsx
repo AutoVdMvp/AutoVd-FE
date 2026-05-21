@@ -1,6 +1,4 @@
-import { HelpIcon } from "@/shared/icons/HelpIcon";
-import { LanguageIcon } from "@/shared/icons/LanguageIcon";
-import { SettingIcon } from "@/shared/icons/SettingIcon";
+import { Icons } from "@/shared/icons";
 import { ReactNode } from "react";
 
 interface MenuItem {
@@ -9,18 +7,9 @@ interface MenuItem {
 }
 
 const MENU_ITEMS: MenuItem[] = [
-  {
-    label: "설정",
-    icon: <SettingIcon className="mini-icon" />,
-  },
-  {
-    label: "언어",
-    icon: <LanguageIcon className="mini-icon" />,
-  },
-  {
-    label: "도움 받기",
-    icon: <HelpIcon className="mini-icon" />,
-  },
+  { label: "설정", icon: <Icons.Setting className="mini-icon" /> },
+  { label: "언어", icon: <Icons.Language className="mini-icon" /> },
+  { label: "도움 받기", icon: <Icons.Help className="mini-icon" /> },
 ];
 
 interface FooterDropdownProps {

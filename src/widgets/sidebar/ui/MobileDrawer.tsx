@@ -5,14 +5,12 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/shared/lib/utils";
 import { useUIStore } from "@/shared/model/uiStore";
 import { Font } from "@/shared/fonts";
-import { HomeIcon } from "@/shared/icons/HomeIcon";
-import { VideoIcon } from "@/shared/icons/VideoIcon";
-import { UserIcon } from "@/shared/icons/UserIcon";
+import { Icons } from "@/shared/icons";
 
 const NAV_ITEMS = [
-  { id: "1", Icon: HomeIcon, label: "홈", href: "/" },
-  { id: "2", Icon: VideoIcon, label: "영상 목록", href: "/videos" },
-  { id: "3", Icon: UserIcon, label: "그 외 무언가", href: "/other" },
+  { id: "1", Icon: Icons.Home, label: "홈", href: "/" },
+  { id: "2", Icon: Icons.Video, label: "영상 목록", href: "/videos" },
+  { id: "3", Icon: Icons.User, label: "그 외 무언가", href: "/other" },
 ];
 
 export function MobileDrawer() {
@@ -36,7 +34,7 @@ export function MobileDrawer() {
           isMobileDrawerOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <div className="h-12 flex items-center justify-between gap-3 px-2 shrink-0">
+        <div className="flex items-center justify-between h-12 gap-3 px-2 shrink-0">
           <div
             className={cn(
               "p-1 text-xl font-bold text-peach-deep",
@@ -47,21 +45,10 @@ export function MobileDrawer() {
           </div>
           <button
             onClick={() => setMobileDrawerOpen(false)}
-            className="p-1 rounded-lg cursor-pointer transition-colors duration-300 hover:text-warm-500 hover:bg-peach-pastel/25"
+            className="p-1 transition-colors duration-300 rounded-lg cursor-pointer hover:text-warm-500 hover:bg-peach-pastel/25"
             aria-label="메뉴 닫기"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 24 24"
-              className="icon"
-            >
-              <path
-                fill="currentColor"
-                d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"
-              />
-            </svg>
+            <Icons.Close className="icon" />
           </button>
         </div>
 
@@ -70,7 +57,7 @@ export function MobileDrawer() {
             {NAV_ITEMS.map(({ id, Icon, label, href }) => {
               const isActive = pathname === href;
               return (
-                <div key={id} className="py-1 px-2">
+                <div key={id} className="px-2 py-1">
                   <Link
                     href={href}
                     onClick={() => setMobileDrawerOpen(false)}
@@ -81,7 +68,7 @@ export function MobileDrawer() {
                         : "text-text-primary hover:bg-peach-pastel/25 hover:text-warm-500",
                     )}
                   >
-                    <div className="flex items-center pl-1 py-1 shrink-0 rounded-lg">
+                    <div className="flex items-center py-1 pl-1 rounded-lg shrink-0">
                       <Icon className="icon" />
                     </div>
                     <span className="flex-1 py-1 pr-1 text-sm truncate whitespace-nowrap">
@@ -94,7 +81,7 @@ export function MobileDrawer() {
           </div>
         </div>
 
-        <div className="flex items-center gap-3 px-2 py-2 h-20 border-t border-warm-200 shrink-0">
+        <div className="flex items-center h-20 gap-3 px-2 py-2 border-t border-warm-200 shrink-0">
           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-black/75 shrink-0">
             <span className="font-bold text-white">JP</span>
           </div>

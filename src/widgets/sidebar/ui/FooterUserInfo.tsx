@@ -1,4 +1,4 @@
-import { MoreIcon } from "@/shared/icons/MoreIcon";
+import { Icons } from "@/shared/icons";
 
 interface FooterUserInfoProps {
   userName: string;
@@ -36,7 +36,7 @@ export function FooterUserInfo({
       </div>
       {isSidebarOpen && (
         <div>
-          <MoreIcon className="icon text-text-primary" />
+          <Icons.More className="icon text-text-primary" />
         </div>
       )}
     </>
