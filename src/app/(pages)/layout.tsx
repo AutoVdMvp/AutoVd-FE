@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Sidebar, MobileDrawer } from "@/widgets/sidebar";
 import { MobileHeader } from "@/widgets/mobile-header";
+import { TutorialModal } from "@/widgets/tutorial-modal";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
@@ -8,6 +9,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <MobileHeader />
       <Sidebar />
       <MobileDrawer />
+      <TutorialModal />
       <div className="flex-1 overflow-auto">{children}</div>
     </main>
   );

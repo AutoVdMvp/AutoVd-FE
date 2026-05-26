@@ -20,7 +20,7 @@ export function SidebarNav({ items }: SidebarNavProps) {
           <NavItem
             key={item.id}
             item={item}
-            isActive={pathname === item.href}
+            isActive={item.kind === "link" ? pathname === item.href : false}
             isSidebarOpen={isSidebarOpen}
           />
         ))}
