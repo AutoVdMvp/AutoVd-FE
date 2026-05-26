@@ -1,16 +1,3 @@
-export { CloseIcon } from "./CloseIcon";
-export { EnterIcon } from "./EnterIcon";
-export { HelpIcon } from "./HelpIcon";
-export { HomeIcon } from "./HomeIcon";
-export { LanguageIcon } from "./LanguageIcon";
-export { MenuIcon } from "./MenuIcon";
-export { MoreIcon } from "./MoreIcon";
-export { PlusIcon } from "./PlusIcon";
-export { SettingIcon } from "./SettingIcon";
-export { SidebarIcon } from "./SidebarIcon";
-export { UserIcon } from "./UserIcon";
-export { VideoIcon } from "./VideoIcon";
-
 import { CloseIcon } from "./CloseIcon";
 import { EnterIcon } from "./EnterIcon";
 import { HelpIcon } from "./HelpIcon";
