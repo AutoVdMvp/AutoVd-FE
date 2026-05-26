@@ -1,3 +1,4 @@
+import { BookIcon } from "./BookIcon";
 import { CloseIcon } from "./CloseIcon";
 import { EnterIcon } from "./EnterIcon";
 import { HelpIcon } from "./HelpIcon";
@@ -24,4 +25,5 @@ export const Icons = {
   Sidebar: SidebarIcon,
   User: UserIcon,
   Video: VideoIcon,
+  Book: BookIcon,
 } as const;
