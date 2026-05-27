@@ -38,7 +38,7 @@ export function Sidebar() {
     {
       kind: "action",
       id: "tutorial",
-      icon: <Icons.Book className="icon" />,
+      icon: <Icons.LightBulb className="icon" />,
       label: "튜토리얼",
       onClick: openTutorial,
     },

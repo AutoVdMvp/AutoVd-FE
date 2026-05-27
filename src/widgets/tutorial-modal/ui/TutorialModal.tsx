@@ -23,19 +23,18 @@ export function TutorialModal() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/20 backdrop-blur-sm"
         onClick={closeTutorial}
       />
       <div
         className={cn(
-          "relative z-10 w-full max-w-lg rounded-2xl overflow-hidden",
-          "glaze-bg",
+          "relative z-10 w-full max-w-lg rounded-2xl overflow-hidden bg-warm-200",
         )}
       >
         <button
           type="button"
           onClick={closeTutorial}
-          className="absolute top-3 right-3 p-1 rounded-lg hover:bg-peach-pastel/25 transition-colors"
+          className="absolute p-1 transition-colors rounded-lg top-3 right-3 hover:bg-peach-pastel/25"
           aria-label="튜토리얼 닫기"
         >
           <Icons.Close className="icon" />

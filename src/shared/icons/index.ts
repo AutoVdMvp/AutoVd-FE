@@ -4,6 +4,7 @@ import { EnterIcon } from "./EnterIcon";
 import { HelpIcon } from "./HelpIcon";
 import { HomeIcon } from "./HomeIcon";
 import { LanguageIcon } from "./LanguageIcon";
+import { LightBulbIcon } from "./LightBulb";
 import { MenuIcon } from "./MenuIcon";
 import { MoreIcon } from "./MoreIcon";
 import { PlusIcon } from "./PlusIcon";
@@ -26,4 +27,5 @@ export const Icons = {
   User: UserIcon,
   Video: VideoIcon,
   Book: BookIcon,
+  LightBulb: LightBulbIcon,
 } as const;
