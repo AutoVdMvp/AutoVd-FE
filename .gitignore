@@ -34,3 +34,6 @@ lerna-debug.log*
 *.swp
 *.swo
 *~
+
+# 학습용
+security-headers.md

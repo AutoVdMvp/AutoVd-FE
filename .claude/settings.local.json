@@ -6,7 +6,11 @@
       "Bash(Select-Object FullName)",
       "Bash(npx tsc *)",
       "Bash(Get-ChildItem -Recurse -Include \"*store*\" -Type File)",
-      "Bash(xargs grep -l \"modal\\\\|Modal\")"
+      "Bash(xargs grep -l \"modal\\\\|Modal\")",
+      "Bash(grep -r \"\\\\`/\" src --include=\"*.ts\" --include=\"*.tsx\")",
+      "Bash(grep -E \"\\\\$\\\\{|searchParams|params\")",
+      "Bash(grep -rn \"\\\\\\\\\\\\$\\\\{\" src --include=\"*.ts\" --include=\"*.tsx\")",
+      "Bash(grep -rn '\\\\$\\\\{' src --include=\"*.ts\" --include=\"*.tsx\")"
     ]
   }
 }
