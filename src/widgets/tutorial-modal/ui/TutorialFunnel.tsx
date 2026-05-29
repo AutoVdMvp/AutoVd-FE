@@ -3,17 +3,9 @@
 import { useState } from "react";
 import { cn } from "@/shared/lib/utils";
 import { useTutorialStore } from "@/shared/model/tutorialStore";
-import type { TutorialStepMeta } from "../model/types";
+import { TUTORIAL_STEPS } from "../model/steps-data";
 import { TutorialProgressBar } from "./TutorialProgressBar";
-import { TutorialStep1 } from "./steps/TutorialStep1";
-import { TutorialStep2 } from "./steps/TutorialStep2";
-import { TutorialStep3 } from "./steps/TutorialStep3";
-
-const TUTORIAL_STEPS: TutorialStepMeta[] = [
-  { id: "intro", title: "AutoVD 소개", component: TutorialStep1 },
-  { id: "input", title: "링크 입력하기", component: TutorialStep2 },
-  { id: "result", title: "영상 확인하기", component: TutorialStep3 },
-];
+import { TutorialStep } from "./steps/TutorialStep";
 
 export function TutorialFunnel() {
   const { closeTutorial } = useTutorialStore();
@@ -22,7 +14,7 @@ export function TutorialFunnel() {
   const isFirst = currentStep === 0;
   const isLast = currentStep === TUTORIAL_STEPS.length - 1;
 
-  const { title, component: StepComponent } = TUTORIAL_STEPS[currentStep];
+  const { title, ...stepProps } = TUTORIAL_STEPS[currentStep];
 
   return (
     <div className="flex flex-col gap-6 p-6">
@@ -40,7 +32,7 @@ export function TutorialFunnel() {
       </div>
 
       <div className="min-h-50">
-        <StepComponent />
+        <TutorialStep {...stepProps} />
       </div>
 
       <div className="flex items-center justify-between">

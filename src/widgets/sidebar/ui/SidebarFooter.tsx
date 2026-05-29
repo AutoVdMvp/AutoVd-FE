@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useUIStore } from "@/shared/model/uiStore";
+import { Icons } from "@/shared/icons";
 import { FooterDropdown } from "./FooterDropdown";
 import { FooterUserInfo } from "./FooterUserInfo";
 
@@ -38,6 +39,11 @@ export function SidebarFooter() {
           plan="Pro 요금제"
           isSidebarOpen={isSidebarOpen}
         />
+        {isSidebarOpen && (
+          <div>
+            <Icons.More className="icon text-text-primary" />
+          </div>
+        )}
       </div>
     </div>
   );

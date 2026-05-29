@@ -1,7 +1,9 @@
-import type { ComponentType } from "react";
+import type { SVGProps, ComponentType } from "react";
 
-export interface TutorialStepMeta {
+export interface TutorialStepData {
   id: string;
   title: string;
-  component: ComponentType;
+  Icon: ComponentType<SVGProps<SVGSVGElement>>;
+  description: [string, string];
+  hint: string;
 }

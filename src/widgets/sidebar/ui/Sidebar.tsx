@@ -7,41 +7,31 @@ import { SidebarHeader } from "./SidebarHeader";
 import { SidebarNav } from "./SidebarNav";
 import { SidebarFooter } from "./SidebarFooter";
 import type { SidebarNavItem } from "../model/types";
-import { Icons } from "@/shared/icons";
+import { APP_NAV_ROUTES, APP_ACTION_ROUTES } from "@/shared/lib/navigation";
 
 export function Sidebar() {
   const { isSidebarOpen } = useUIStore();
   const { openTutorial } = useTutorialStore();
 
+  const actionHandlers: Record<string, () => void> = {
+    tutorial: openTutorial,
+  };
+
   const navItems: SidebarNavItem[] = [
-    {
-      kind: "link",
-      id: "1",
-      icon: <Icons.Home className="icon" />,
-      label: "홈",
-      href: "/",
-    },
-    {
-      kind: "link",
-      id: "2",
-      icon: <Icons.Video className="icon" />,
-      label: "영상 목록",
-      href: "/videos",
-    },
-    {
-      kind: "link",
-      id: "3",
-      icon: <Icons.User className="icon" />,
-      label: "그 외 무언가",
-      href: "/other",
-    },
-    {
-      kind: "action",
-      id: "tutorial",
-      icon: <Icons.LightBulb className="icon" />,
-      label: "튜토리얼",
-      onClick: openTutorial,
-    },
+    ...APP_NAV_ROUTES.map(({ kind, id, Icon, label, href }) => ({
+      kind,
+      id,
+      icon: <Icon className="icon" />,
+      label,
+      href,
+    })),
+    ...APP_ACTION_ROUTES.map(({ kind, id, Icon, label }) => ({
+      kind,
+      id,
+      icon: <Icon className="icon" />,
+      label,
+      onClick: actionHandlers[id],
+    })),
   ];
 
   return (

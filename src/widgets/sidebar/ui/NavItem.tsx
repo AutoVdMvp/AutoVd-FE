@@ -10,17 +10,27 @@ interface NavItemProps {
   isSidebarOpen: boolean;
 }
 
-export function NavItem({ item, isActive, isSidebarOpen }: NavItemProps) {
-  const wrapClass = `py-1 ${isSidebarOpen ? "px-2" : ""}`;
-
-  const innerClass = cn(
+const getInnerClass = (isActive: boolean, isSidebarOpen: boolean) =>
+  cn(
     "flex flex-row items-center justify-start w-full gap-2 rounded-lg transition-all duration-300 text-left cursor-pointer",
     isActive
       ? "text-warm-500 bg-peach-pastel/40 cursor-default"
-      : `text-text-primary hover:-translate-y-1 ${isSidebarOpen ? "hover:bg-peach-pastel/25 hover:text-warm-500" : ""}`,
+      : cn(
+          "text-text-primary hover:-translate-y-1",
+          isSidebarOpen && "hover:bg-peach-pastel/25 hover:text-warm-500",
+        ),
   );
 
-  const iconWrapClass = `flex items-center pl-1 py-1 shrink-0 rounded-lg ${isSidebarOpen ? "" : "hover:bg-peach-pastel/25 translate-x-2"}`;
+const getIconWrapClass = (isSidebarOpen: boolean) =>
+  cn(
+    "flex items-center pl-1 py-1 shrink-0 rounded-lg",
+    !isSidebarOpen && "hover:bg-peach-pastel/25 translate-x-2",
+  );
+
+export function NavItem({ item, isActive, isSidebarOpen }: NavItemProps) {
+  const wrapClass = cn("py-1", isSidebarOpen && "px-2");
+  const innerClass = getInnerClass(isActive, isSidebarOpen);
+  const iconWrapClass = getIconWrapClass(isSidebarOpen);
 
   const content = (
     <>
