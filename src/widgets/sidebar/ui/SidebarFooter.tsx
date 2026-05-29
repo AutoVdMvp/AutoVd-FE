@@ -26,12 +26,12 @@ export function SidebarFooter() {
   return (
     <div ref={containerRef} className="relative shrink-0">
       <FooterDropdown
-        isOpen={isDropdownOpen}
+        isOpen={isSidebarOpen ? isDropdownOpen : false}
         onClose={() => setIsDropdownOpen(false)}
       />
       <div
         onClick={() => setIsDropdownOpen((prev) => !prev)}
-        className={`group cursor-pointer hover:bg-peach-pastel/25 transition-all duration-300 flex items-center h-20 gap-3 px-2 py-2 text-sm border-t border-warm-200 ${isSidebarOpen ? "justify-between" : "justify-start"}`}
+        className={`group hover:bg-peach-pastel/25 transition-all duration-300 flex items-center h-20 gap-3 px-2 py-2 text-sm border-t border-warm-200 ${isSidebarOpen ? "justify-between cursor-pointer" : "justify-start cursor-default"}`}
       >
         <FooterUserInfo
           userName="Joseph Park"

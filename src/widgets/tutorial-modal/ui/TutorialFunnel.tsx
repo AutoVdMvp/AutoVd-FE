@@ -39,7 +39,7 @@ export function TutorialFunnel() {
         </div>
       </div>
 
-      <div className="min-h-[200px]">
+      <div className="min-h-50">
         <StepComponent />
       </div>
 
@@ -48,8 +48,8 @@ export function TutorialFunnel() {
           type="button"
           onClick={() => setCurrentStep((s) => s - 1)}
           className={cn(
-            "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
-            "text-text-primary hover:bg-peach-pastel/25",
+            "px-6 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer",
+            "text-white bg-peach-deep/80 hover:bg-peach-deep",
             isFirst && "invisible",
           )}
         >
@@ -60,7 +60,7 @@ export function TutorialFunnel() {
           <button
             type="button"
             onClick={closeTutorial}
-            className="px-6 py-2 rounded-lg text-sm font-medium bg-peach-deep/80 text-white hover:bg-peach-deep transition-colors"
+            className="px-6 py-2 text-sm font-medium text-white transition-colors rounded-lg cursor-pointer bg-peach-deep/80 hover:bg-peach-deep"
           >
             시작하기
           </button>
@@ -68,7 +68,7 @@ export function TutorialFunnel() {
           <button
             type="button"
             onClick={() => setCurrentStep((s) => s + 1)}
-            className="px-6 py-2 rounded-lg text-sm font-medium bg-peach-deep/80 text-white hover:bg-peach-deep transition-colors"
+            className="px-6 py-2 text-sm font-medium text-white transition-colors rounded-lg cursor-pointer bg-peach-deep/80 hover:bg-peach-deep"
           >
             다음
           </button>

@@ -28,16 +28,16 @@ export function TutorialModal() {
       />
       <div
         className={cn(
-          "relative z-10 w-full max-w-lg rounded-2xl overflow-hidden bg-warm-200",
+          "relative z-10 w-full max-w-lg rounded-2xl overflow-hidden bg-warm-100",
         )}
       >
         <button
           type="button"
           onClick={closeTutorial}
-          className="absolute p-1 transition-colors rounded-lg top-3 right-3 hover:bg-peach-pastel/25"
+          className="absolute p-1 transition-colors rounded-lg cursor-pointer top-3 right-3 hover:bg-white/25"
           aria-label="튜토리얼 닫기"
         >
-          <Icons.Close className="icon" />
+          <Icons.Close className="text-peach-deep icon" />
         </button>
         <TutorialFunnel />
       </div>

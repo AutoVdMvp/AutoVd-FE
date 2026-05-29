@@ -14,7 +14,7 @@ export function NavItem({ item, isActive, isSidebarOpen }: NavItemProps) {
   const wrapClass = `py-1 ${isSidebarOpen ? "px-2" : ""}`;
 
   const innerClass = cn(
-    "flex flex-row items-center justify-start w-full gap-2 rounded-lg transition-all duration-300 text-left",
+    "flex flex-row items-center justify-start w-full gap-2 rounded-lg transition-all duration-300 text-left cursor-pointer",
     isActive
       ? "text-warm-500 bg-peach-pastel/40 cursor-default"
       : `text-text-primary hover:-translate-y-1 ${isSidebarOpen ? "hover:bg-peach-pastel/25 hover:text-warm-500" : ""}`,
