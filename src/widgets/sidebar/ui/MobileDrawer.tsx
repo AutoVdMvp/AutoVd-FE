@@ -6,12 +6,8 @@ import { cn } from "@/shared/lib/utils";
 import { useUIStore } from "@/shared/model/uiStore";
 import { Font } from "@/shared/fonts";
 import { Icons } from "@/shared/icons";
-
-const NAV_ITEMS = [
-  { id: "1", Icon: Icons.Home, label: "홈", href: "/" },
-  { id: "2", Icon: Icons.Video, label: "영상 목록", href: "/videos" },
-  { id: "3", Icon: Icons.User, label: "그 외 무언가", href: "/other" },
-];
+import { APP_NAV_ROUTES } from "@/shared/lib/navigation";
+import { FooterUserInfo } from "./FooterUserInfo";
 
 export function MobileDrawer() {
   const { isMobileDrawerOpen, setMobileDrawerOpen } = useUIStore();
@@ -54,7 +50,7 @@ export function MobileDrawer() {
 
         <div className="flex flex-col flex-1 min-h-0 pt-1 overflow-y-auto">
           <div className="flex flex-col gap-1">
-            {NAV_ITEMS.map(({ id, Icon, label, href }) => {
+            {APP_NAV_ROUTES.map(({ id, Icon, label, href }) => {
               const isActive = pathname === href;
               return (
                 <div key={id} className="px-2 py-1">
@@ -82,15 +78,11 @@ export function MobileDrawer() {
         </div>
 
         <div className="flex items-center h-20 gap-3 px-2 py-2 border-t border-warm-200 shrink-0">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-black/75 shrink-0">
-            <span className="font-bold text-white">JP</span>
-          </div>
-          <div className="flex flex-col py-1">
-            <span className="font-bold text-md text-text-primary/80">
-              Joseph Park
-            </span>
-            <span className="text-xs">Pro 요금제</span>
-          </div>
+          <FooterUserInfo
+            userName="Joseph Park"
+            plan="Pro 요금제"
+            isSidebarOpen={true}
+          />
         </div>
       </div>
     </div>
