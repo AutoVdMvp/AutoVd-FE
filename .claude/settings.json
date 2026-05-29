@@ -1,93 +1,13 @@
 {
-  "hooks": {
-    "PostToolUse": [
-      {
-        "comment": "Auto-format TypeScript/JavaScript files with Prettier after Write/Edit",
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "npx prettier --write \"$CLAUDE_TOOL_INPUT_FILE_PATH\" 2>/dev/null || true"
-          }
-        ]
-      },
-      {
-        "comment": "Auto-fix ESLint issues after Write/Edit",
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "npx eslint --fix \"$CLAUDE_TOOL_INPUT_FILE_PATH\" 2>/dev/null || true"
-          }
-        ]
-      },
-      {
-        "comment": "Run full TypeScript project type check on .ts and .tsx files",
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [[ \"$CLAUDE_TOOL_INPUT_FILE_PATH\" =~ \\.(ts|tsx)$ ]]; then npx tsc --noEmit 2>&1 | head -30 || true; fi"
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "comment": "Block dangerous bash commands",
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous-commands.sh"
-          }
-        ]
-      },
-      {
-        "comment": "Validate component structure before creation",
-        "matcher": "Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/validate-component.sh"
-          }
-        ]
-      },
-      {
-        "comment": "Validate FSD import rules before Write/Edit",
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/validate-fsd-imports.sh"
-          }
-        ]
-      }
-    ],
-    "SessionStart": [
-      {
-        "comment": "Load project context and recent changes",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.sh"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "comment": "Ensure code quality before marking task complete",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/pre-stop-validation.sh"
-          }
-        ]
-      }
-    ]
+  "env": {
+    "NODE_ENV": "development"
   },
   "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\박요셉\\\\개발모음\\\\autovd-fe\\\\src\" -Recurse -File -Name)",
+      "Bash(Sort-Object)",
+      "Read(//c/Users/�ڿ��/���߸���/autovd-fe/**)"
+    ],
     "Write": [
       {
         "allow": true,
@@ -131,7 +51,84 @@
       }
     ]
   },
-  "env": {
-    "NODE_ENV": "development"
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx prettier --write \"$CLAUDE_TOOL_INPUT_FILE_PATH\" 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx eslint --fix \"$CLAUDE_TOOL_INPUT_FILE_PATH\" 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ \"$CLAUDE_TOOL_INPUT_FILE_PATH\" =~ \\.(ts|tsx)$ ]]; then npx tsc --noEmit 2>&1 | head -30 || true; fi"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/block-dangerous-commands.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/validate-component.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/validate-fsd-imports.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/pre-stop-validation.sh"
+          }
+        ]
+      }
+    ]
   }
 }
