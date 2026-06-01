@@ -2,6 +2,8 @@
 
 import { lazy, Suspense, useState } from "react";
 import { VideoCard, VideoCardSkeleton, type Video } from "@/entities/video";
+import { EmptyState } from "@/shared/ui";
+import { Icons } from "@/shared/icons";
 
 // 초기 번들에서 분리 — 클릭 시 첫 로드
 const VideoModal = lazy(() =>
@@ -75,6 +77,16 @@ function VideoGridSkeleton() {
 function VideoGrid({ onSelect }: { onSelect: (video: Video) => void }) {
   // const { data: videos } = useSuspenseQuery(videoQueries.list())
   const videos = MOCK_VIDEOS;
+
+  if (videos.length === 0) {
+    return (
+      <EmptyState
+        icon={<Icons.Video />}
+        title="아직 생성된 영상이 없습니다"
+        description="기사 링크를 제출하면 자동으로 영상이 생성됩니다"
+      />
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">

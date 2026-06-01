@@ -1,36 +1,23 @@
 "use client";
 
-import { useEffect } from "react";
-import { cn } from "@/shared/lib/utils";
 import { Icons } from "@/shared/icons";
 import { useTutorialStore } from "@/shared/model/tutorialStore";
+import { Dialog, DialogContent, DialogTitle } from "@/shared/ui";
 import { TutorialFunnel } from "./TutorialFunnel";
 
+// 첫 방문 사용자를 위한 튜토리얼 모달. 3단계 퍼널로 구성된다.
 export function TutorialModal() {
   const { isOpen, closeTutorial } = useTutorialStore();
 
-  useEffect(() => {
-    if (!isOpen) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeTutorial();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, closeTutorial]);
-
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div
-        className="absolute inset-0 bg-black/20 backdrop-blur-sm"
-        onClick={closeTutorial}
-      />
-      <div
-        className={cn(
-          "relative z-10 w-full max-w-lg rounded-2xl overflow-hidden bg-warm-100",
-        )}
+    <Dialog open={isOpen} onOpenChange={(open) => !open && closeTutorial()}>
+      <DialogContent
+        className="p-0 max-w-lg bg-warm-100 rounded-2xl overflow-hidden ring-0 gap-0"
+        overlayClassName="bg-black/20 backdrop-blur-sm"
+        showCloseButton={false}
+        aria-label="튜토리얼"
       >
+        <DialogTitle className="sr-only">튜토리얼</DialogTitle>
         <button
           type="button"
           onClick={closeTutorial}
@@ -40,7 +27,7 @@ export function TutorialModal() {
           <Icons.Close className="text-peach-deep icon" />
         </button>
         <TutorialFunnel />
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }
