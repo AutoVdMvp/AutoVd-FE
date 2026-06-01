@@ -1,6 +1,7 @@
 "use client";
 
 import { Component, ReactNode, ErrorInfo } from "react";
+import { Button } from "./Button";
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -40,13 +41,13 @@ export class ErrorBoundary extends Component<
           <p className="text-text-muted text-sm max-w-xs">
             {this.state.error?.message ?? "알 수 없는 오류"}
           </p>
-          <button
-            type="button"
+          <Button
+            size="sm"
             onClick={() => this.setState({ hasError: false, error: null })}
-            className="mt-2 px-4 py-2 rounded-lg text-sm font-medium bg-peach-pastel text-text-primary hover:bg-peach-deep hover:text-white transition-colors"
+            className="mt-2 bg-peach-pastel text-text-primary hover:bg-peach-deep hover:text-white"
           >
             다시 시도
-          </button>
+          </Button>
         </div>
       );
     }

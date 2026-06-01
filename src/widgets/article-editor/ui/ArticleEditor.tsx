@@ -4,27 +4,29 @@ import { useRef, useState } from "react";
 import { EditorInput } from "@/shared/ui/editor-input";
 import type { ArticleEditorProps } from "../model/types";
 import { Icons } from "@/shared/icons";
+import { Button } from "@/shared/ui";
 
+// 기사 링크를 입력받아 제출하는 에디터. Enter 키 또는 버튼으로 제출한다.
 export function ArticleEditor({ onSubmit }: ArticleEditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
 
   const submitText = () => {
     const text = editorRef.current?.innerText.trim() || "";
-
     if (!text) return;
-
     onSubmit(text);
     if (editorRef.current) {
       editorRef.current.innerText = "";
     }
   };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       submitText();
     }
   };
+
   return (
     <div
       onFocus={() => setIsFocused(true)}
@@ -38,12 +40,13 @@ export function ArticleEditor({ onSubmit }: ArticleEditorProps) {
       />
       <div className="flex items-center justify-between px-2 py-1 md:px-4 md:py-2">
         <div>미래의 도구</div>
-        <button
+        <Button
+          size="icon"
           onClick={submitText}
-          className="flex items-center justify-center p-2 text-white transition-all duration-300 rounded-full cursor-pointer py w-9 h-9 bg-peach-deep/50 hover:bg-peach-deep active:scale-95"
+          className="text-white rounded-full w-9 h-9 bg-peach-deep/50 hover:bg-peach-deep active:scale-95"
         >
-          <Icons.Enter className="-translate-x-0.5 w-7 h-7 " />
-        </button>
+          <Icons.Enter className="-translate-x-0.5 w-7 h-7" />
+        </Button>
       </div>
     </div>
   );

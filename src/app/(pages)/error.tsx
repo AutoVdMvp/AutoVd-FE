@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { Button } from "@/shared/ui";
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -26,13 +27,12 @@ export default function Error({ error, reset }: ErrorProps) {
         </p>
       </div>
 
-      <button
-        type="button"
+      <Button
         onClick={reset}
-        className="px-5 py-2.5 rounded-xl text-sm font-semibold bg-peach-pastel text-text-primary hover:bg-peach-deep hover:text-white transition-colors"
+        className="bg-peach-pastel text-text-primary hover:bg-peach-deep hover:text-white"
       >
         다시 시도
-      </button>
+      </Button>
     </div>
   );
 }

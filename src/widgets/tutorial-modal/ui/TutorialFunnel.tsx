@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { cn } from "@/shared/lib/utils";
 import { useTutorialStore } from "@/shared/model/tutorialStore";
+import { Button } from "@/shared/ui";
 import { TUTORIAL_STEPS } from "../model/steps-data";
 import { TutorialProgressBar } from "./TutorialProgressBar";
 import { TutorialStep } from "./steps/TutorialStep";
 
+// 튜토리얼 단계를 순서대로 보여주는 퍼널. 이전/다음/시작하기 버튼으로 진행한다.
 export function TutorialFunnel() {
   const { closeTutorial } = useTutorialStore();
   const [currentStep, setCurrentStep] = useState(0);
@@ -36,34 +38,30 @@ export function TutorialFunnel() {
       </div>
 
       <div className="flex items-center justify-between">
-        <button
-          type="button"
+        <Button
           onClick={() => setCurrentStep((s) => s - 1)}
           className={cn(
-            "px-6 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer",
-            "text-white bg-peach-deep/80 hover:bg-peach-deep",
+            "bg-peach-deep/80 hover:bg-peach-deep",
             isFirst && "invisible",
           )}
         >
           이전
-        </button>
+        </Button>
 
         {isLast ? (
-          <button
-            type="button"
+          <Button
             onClick={closeTutorial}
-            className="px-6 py-2 text-sm font-medium text-white transition-colors rounded-lg cursor-pointer bg-peach-deep/80 hover:bg-peach-deep"
+            className="bg-peach-deep/80 hover:bg-peach-deep"
           >
             시작하기
-          </button>
+          </Button>
         ) : (
-          <button
-            type="button"
+          <Button
             onClick={() => setCurrentStep((s) => s + 1)}
-            className="px-6 py-2 text-sm font-medium text-white transition-colors rounded-lg cursor-pointer bg-peach-deep/80 hover:bg-peach-deep"
+            className="bg-peach-deep/80 hover:bg-peach-deep"
           >
             다음
-          </button>
+          </Button>
         )}
       </div>
     </div>

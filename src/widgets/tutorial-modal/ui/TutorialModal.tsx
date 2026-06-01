@@ -2,7 +2,7 @@
 
 import { Icons } from "@/shared/icons";
 import { useTutorialStore } from "@/shared/model/tutorialStore";
-import { Dialog, DialogContent, DialogTitle } from "@/shared/ui";
+import { Button, Dialog, DialogContent, DialogTitle } from "@/shared/ui";
 import { TutorialFunnel } from "./TutorialFunnel";
 
 // 첫 방문 사용자를 위한 튜토리얼 모달. 3단계 퍼널로 구성된다.
@@ -18,14 +18,15 @@ export function TutorialModal() {
         aria-label="튜토리얼"
       >
         <DialogTitle className="sr-only">튜토리얼</DialogTitle>
-        <button
-          type="button"
+        <Button
+          variant="ghost"
+          size="icon-sm"
           onClick={closeTutorial}
-          className="absolute p-1 transition-colors rounded-lg cursor-pointer top-3 right-3 hover:bg-white/25"
+          className="absolute top-3 right-3 hover:bg-white/25"
           aria-label="튜토리얼 닫기"
         >
           <Icons.Close className="text-peach-deep icon" />
-        </button>
+        </Button>
         <TutorialFunnel />
       </DialogContent>
     </Dialog>

@@ -7,8 +7,10 @@ import { useUIStore } from "@/shared/model/uiStore";
 import { Font } from "@/shared/fonts";
 import { Icons } from "@/shared/icons";
 import { APP_NAV_ROUTES } from "@/shared/lib/navigation";
+import { Button } from "@/shared/ui";
 import { FooterUserInfo } from "./FooterUserInfo";
 
+// 모바일 전용 슬라이드 드로어 메뉴.
 export function MobileDrawer() {
   const { isMobileDrawerOpen, setMobileDrawerOpen } = useUIStore();
   const pathname = usePathname();
@@ -39,13 +41,15 @@ export function MobileDrawer() {
           >
             Auto VD
           </div>
-          <button
+          <Button
+            variant="ghost"
+            size="icon-sm"
             onClick={() => setMobileDrawerOpen(false)}
-            className="p-1 transition-colors duration-300 rounded-lg cursor-pointer hover:text-warm-500 hover:bg-peach-pastel/25"
+            className="hover:bg-peach-pastel/25 hover:text-warm-500"
             aria-label="메뉴 닫기"
           >
             <Icons.Close className="icon" />
-          </button>
+          </Button>
         </div>
 
         <div className="flex flex-col flex-1 min-h-0 pt-1 overflow-y-auto">

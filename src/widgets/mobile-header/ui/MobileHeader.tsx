@@ -4,7 +4,9 @@ import { cn } from "@/shared/lib/utils";
 import { useUIStore } from "@/shared/model/uiStore";
 import { Font } from "@/shared/fonts";
 import { Icons } from "@/shared/icons";
+import { Button } from "@/shared/ui";
 
+// 모바일 전용 상단 헤더. 햄버거 버튼으로 드로어를 열 수 있다.
 export function MobileHeader() {
   const { toggleMobileDrawer } = useUIStore();
 
@@ -15,13 +17,15 @@ export function MobileHeader() {
         "border-b border-warm-200 bg-white shrink-0",
       )}
     >
-      <button
+      <Button
+        variant="ghost"
+        size="icon-sm"
         onClick={toggleMobileDrawer}
-        className="p-1 transition-colors duration-300 rounded-lg cursor-pointer hover:text-warm-500 hover:bg-peach-pastel/25"
+        className="hover:bg-peach-pastel/25 hover:text-warm-500"
         aria-label="메뉴 열기"
       >
         <Icons.Menu className="icon" />
-      </button>
+      </Button>
       <div
         className={cn(
           "text-xl font-bold text-peach-deep shrink-0",

@@ -5,12 +5,12 @@ import { ReactNode } from "react";
 import { cn } from "@/shared/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center font-semibold rounded transition-colors focus-visible:outline-none disabled:opacity-50 disabled:cursor-not-allowed",
+  "inline-flex cursor-pointer items-center justify-center font-semibold rounded transition-colors focus-visible:outline-none disabled:opacity-50 disabled:cursor-not-allowed",
   {
     variants: {
       variant: {
-        primary: "bg-blue-600 text-white hover:bg-blue-700",
-        secondary: "bg-gray-200 text-gray-900 hover:bg-gray-300",
+        primary: "bg-peach-deep text-white hover:bg-peach-deep/80",
+        secondary: "bg-warm-200 text-text-primary hover:bg-warm-300",
         ghost: "text-text-secondary hover:bg-warm-100 hover:text-text-primary",
         outline:
           "border border-warm-300 bg-transparent text-text-primary hover:bg-warm-100",
