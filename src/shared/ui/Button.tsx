@@ -1,37 +1,59 @@
-import { ReactNode } from "react";
+"use client";
 
-interface ButtonProps {
+import { cva, type VariantProps } from "class-variance-authority";
+import { ReactNode } from "react";
+import { cn } from "@/shared/lib/utils";
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center font-semibold rounded transition-colors focus-visible:outline-none disabled:opacity-50 disabled:cursor-not-allowed",
+  {
+    variants: {
+      variant: {
+        primary: "bg-blue-600 text-white hover:bg-blue-700",
+        secondary: "bg-gray-200 text-gray-900 hover:bg-gray-300",
+        ghost: "text-text-secondary hover:bg-warm-100 hover:text-text-primary",
+        outline:
+          "border border-warm-300 bg-transparent text-text-primary hover:bg-warm-100",
+      },
+      size: {
+        sm: "px-3 py-1 text-sm",
+        md: "px-4 py-2 text-base",
+        lg: "px-6 py-3 text-lg",
+        "icon-sm": "h-8 w-8 p-0",
+        icon: "h-10 w-10 p-0",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+      size: "md",
+    },
+  },
+);
+
+interface ButtonProps extends VariantProps<typeof buttonVariants> {
   children: ReactNode;
   onClick?: () => void;
-  variant?: "primary" | "secondary";
-  size?: "sm" | "md" | "lg";
   className?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
+// 범용 버튼 컴포넌트. variant와 size로 외형을 제어한다.
 export function Button({
   children,
   onClick,
-  variant = "primary",
-  size = "md",
-  className = "",
+  variant,
+  size,
+  className,
+  type = "button",
+  disabled = false,
 }: ButtonProps) {
-  const baseClasses = "font-semibold rounded transition-colors";
-
-  const variantClasses = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700",
-    secondary: "bg-gray-200 text-gray-900 hover:bg-gray-300",
-  };
-
-  const sizeClasses = {
-    sm: "px-3 py-1 text-sm",
-    md: "px-4 py-2 text-base",
-    lg: "px-6 py-3 text-lg",
-  };
-
   return (
     <button
+      type={type}
       onClick={onClick}
-      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      disabled={disabled}
+      className={cn(buttonVariants({ variant, size }), className)}
     >
       {children}
     </button>

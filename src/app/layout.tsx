@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/shared/providers";
 import { Font } from "@/shared/fonts";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "AutoVD",
@@ -14,7 +18,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" data-scroll-behavior="smooth">
+    <html
+      lang="ko"
+      data-scroll-behavior="smooth"
+      className={cn("font-sans", geist.variable)}
+    >
       <body
         className={`h-screen overflow-hidden ${Font.stackSans.default.className}`}
       >

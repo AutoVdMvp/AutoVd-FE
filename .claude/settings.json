@@ -9,10 +9,12 @@
       "Read(//c/Users/�ڿ��/���߸���/autovd-fe/**)",
       "Bash(Remove-Item \"c:\\\\Users\\\\박요셉\\\\개발모음\\\\autovd-fe\\\\src\\\\widgets\\\\tutorial-modal\\\\ui\\\\steps\\\\TutorialStep1.tsx\", \"c:\\\\Users\\\\박요셉\\\\개발모음\\\\autovd-fe\\\\src\\\\widgets\\\\tutorial-modal\\\\ui\\\\steps\\\\TutorialStep2.tsx\", \"c:\\\\Users\\\\박요셉\\\\개발모음\\\\autovd-fe\\\\src\\\\widgets\\\\tutorial-modal\\\\ui\\\\steps\\\\TutorialStep3.tsx\")",
       "Bash(Get-ChildItem \"c:\\\\Users\\\\박요셉\\\\개발모음\\\\autovd-fe\" -Depth 0)",
-      "Bash(Select-Object Name)"
+      "Bash(Select-Object Name)",
+      "Bash(git mv *)"
     ],
     "additionalDirectories": [
-      "c:\\Users\\�ڿ��\\���߸���\\autovd-fe\\src\\shared"
+      "c:\\Users\\�ڿ��\\���߸���\\autovd-fe\\src\\shared",
+      "c:\\Users\\�ڿ��\\���߸���\\autovd-fe\\src"
     ],
     "Write": [
       {
