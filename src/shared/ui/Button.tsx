@@ -1,7 +1,7 @@
 "use client";
 
 import { cva, type VariantProps } from "class-variance-authority";
-import { ReactNode } from "react";
+import { ReactNode, ComponentPropsWithoutRef } from "react";
 import { cn } from "@/shared/lib/utils";
 
 const buttonVariants = cva(
@@ -30,30 +30,25 @@ const buttonVariants = cva(
   },
 );
 
-interface ButtonProps extends VariantProps<typeof buttonVariants> {
-  children: ReactNode;
-  onClick?: () => void;
-  className?: string;
-  type?: "button" | "submit" | "reset";
-  disabled?: boolean;
-}
+// VariantProps + 네이티브 button 속성 전체(aria-*, data-* 포함) 지원.
+type ButtonProps = VariantProps<typeof buttonVariants> &
+  Omit<ComponentPropsWithoutRef<"button">, "children"> & {
+    children: ReactNode;
+  };
 
 // 범용 버튼 컴포넌트. variant와 size로 외형을 제어한다.
 export function Button({
   children,
-  onClick,
   variant,
   size,
   className,
-  type = "button",
-  disabled = false,
+  ...props
 }: ButtonProps) {
   return (
     <button
-      type={type}
-      onClick={onClick}
-      disabled={disabled}
+      type="button"
       className={cn(buttonVariants({ variant, size }), className)}
+      {...props}
     >
       {children}
     </button>
