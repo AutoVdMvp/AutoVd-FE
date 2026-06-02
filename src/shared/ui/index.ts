@@ -15,3 +15,4 @@ export { Toaster } from "./Sonner";
 export { Spinner } from "./Spinner";
 export { EmptyState } from "./EmptyState";
 export { ErrorBoundary } from "./ErrorBoundary";
+export { FormError } from "./FormError";

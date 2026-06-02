@@ -1,48 +1,62 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { useForm } from "@tanstack/react-form-nextjs";
 import { EditorInput } from "@/shared/ui/editor-input";
-import type { ArticleEditorProps } from "../model/types";
+import { Button, FormError } from "@/shared/ui";
 import { Icons } from "@/shared/icons";
-import { Button } from "@/shared/ui";
+import { urlSchema } from "@/shared/lib/validators";
+import type { ArticleEditorProps } from "../model/types";
 
-// 기사 링크를 입력받아 제출하는 에디터. Enter 키 또는 버튼으로 제출한다.
+// 기사 링크를 입력받아 제출하는 에디터. URL 형식 검증을 포함한다.
 export function ArticleEditor({ onSubmit }: ArticleEditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
-  const [isFocused, setIsFocused] = useState(false);
 
-  const submitText = () => {
-    const text = editorRef.current?.innerText.trim() || "";
-    if (!text) return;
-    onSubmit(text);
-    if (editorRef.current) {
-      editorRef.current.innerText = "";
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      submitText();
-    }
-  };
+  const form = useForm({
+    defaultValues: { link: "" },
+    onSubmit: ({ value }) => {
+      onSubmit(value.link.trim());
+      if (editorRef.current) editorRef.current.innerText = "";
+      form.reset();
+    },
+  });
 
   return (
-    <div
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
-      className={`flex flex-col w-full md:gap-3 gap-2 overflow-hidden transition-colors duration-300 border-2 rounded-lg outline-none scrollbar-none ${isFocused ? "border-peach-pastel" : "border-peach-pastel/50 hover:border-peach-pastel"}`}
-    >
-      <EditorInput
-        ref={editorRef}
-        placeholder="기사 링크를 입력해주세요"
-        onKeyDown={handleKeyDown}
-      />
+    <div className="flex flex-col w-full md:gap-3 gap-2 overflow-hidden transition-colors duration-300 border-2 rounded-lg outline-none scrollbar-none border-peach-pastel/50 focus-within:border-peach-pastel hover:border-peach-pastel">
+      <form.Field
+        name="link"
+        validators={{
+          onSubmit: ({ value }) => {
+            const result = urlSchema.safeParse(value);
+            return result.success ? undefined : result.error.issues[0].message;
+          },
+        }}
+      >
+        {(field) => (
+          <>
+            <EditorInput
+              ref={editorRef}
+              placeholder="기사 링크를 입력해주세요"
+              onInput={(e) => field.handleChange(e.currentTarget.innerText)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  form.handleSubmit();
+                }
+              }}
+            />
+            {field.state.meta.errors[0] && (
+              <FormError message={String(field.state.meta.errors[0])} />
+            )}
+          </>
+        )}
+      </form.Field>
+
       <div className="flex items-center justify-between px-2 py-1 md:px-4 md:py-2">
         <div>미래의 도구</div>
         <Button
           size="icon"
-          onClick={submitText}
+          onClick={() => form.handleSubmit()}
           className="text-white rounded-full w-9 h-9 bg-peach-deep/50 hover:bg-peach-deep active:scale-95"
         >
           <Icons.Enter className="-translate-x-0.5 w-7 h-7" />
