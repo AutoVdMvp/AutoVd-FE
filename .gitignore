@@ -35,6 +35,5 @@ lerna-debug.log*
 *.swo
 *~
 
-# 학습용
-security-headers.md
-frontend-tasks.md
+# 문서 (로컬 전용)
+docs/
