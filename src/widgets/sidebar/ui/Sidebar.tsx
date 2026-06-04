@@ -35,7 +35,7 @@ export function Sidebar() {
   ];
 
   return (
-    <div
+    <aside
       id="sidebar"
       className={cn(
         "hidden md:flex flex-col justify-between h-full bg-transparent",
@@ -49,6 +49,6 @@ export function Sidebar() {
         <SidebarNav items={navItems} />
       </div>
       <SidebarFooter />
-    </div>
+    </aside>
   );
 }

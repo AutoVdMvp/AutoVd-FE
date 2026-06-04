@@ -30,9 +30,13 @@ export function SidebarFooter() {
         isOpen={isSidebarOpen ? isDropdownOpen : false}
         onClose={() => setIsDropdownOpen(false)}
       />
-      <div
+      <button
+        type="button"
         onClick={() => setIsDropdownOpen((prev) => !prev)}
-        className={`group hover:bg-peach-pastel/25 transition-all duration-300 flex items-center h-20 gap-3 px-2 py-2 text-sm border-t border-warm-200 ${isSidebarOpen ? "justify-between cursor-pointer" : "justify-start cursor-default"}`}
+        aria-expanded={isSidebarOpen ? isDropdownOpen : false}
+        aria-haspopup="menu"
+        aria-label="사용자 메뉴"
+        className={`group hover:bg-peach-pastel/25 transition-all duration-300 flex items-center w-full h-20 gap-3 px-2 py-2 text-sm border-t border-warm-200 ${isSidebarOpen ? "justify-between cursor-pointer" : "justify-start cursor-default"}`}
       >
         <FooterUserInfo
           userName="Joseph Park"
@@ -40,11 +44,9 @@ export function SidebarFooter() {
           isSidebarOpen={isSidebarOpen}
         />
         {isSidebarOpen && (
-          <div>
-            <Icons.More className="icon text-text-primary" />
-          </div>
+          <Icons.More className="icon text-text-primary" aria-hidden="true" />
         )}
-      </div>
+      </button>
     </div>
   );
 }

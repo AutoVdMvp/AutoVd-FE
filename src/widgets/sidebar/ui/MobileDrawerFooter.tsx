@@ -35,17 +35,24 @@ export function MobileDrawerFooter() {
         className="right-2 left-2"
       />
 
-      <div
+      <button
+        type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="group flex items-center h-16 gap-3 px-2 py-2 cursor-pointer hover:bg-peach-pastel/25 transition-colors duration-300"
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
+        aria-label="사용자 메뉴"
+        className="group flex items-center w-full h-16 gap-3 px-2 py-2 cursor-pointer hover:bg-peach-pastel/25 transition-colors duration-300"
       >
         <FooterUserInfo
           userName="Joseph Park"
           plan="Pro 요금제"
           isSidebarOpen={true}
         />
-        <Icons.More className="icon text-text-primary ml-auto" />
-      </div>
+        <Icons.More
+          className="icon text-text-primary ml-auto"
+          aria-hidden="true"
+        />
+      </button>
     </div>
   );
 }

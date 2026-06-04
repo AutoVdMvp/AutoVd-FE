@@ -29,10 +29,11 @@ export function VideoCard({ video, onClick }: VideoCardProps) {
     THUMBNAIL_GRADIENTS[parseInt(video.id, 10) % THUMBNAIL_GRADIENTS.length];
 
   return (
-    <div
+    <button
+      type="button"
       onClick={() => onClick(video)}
       className={cn(
-        "group cursor-pointer rounded-xl overflow-hidden lg:min-w-50 min-w-35 ",
+        "group cursor-pointer w-full text-left rounded-xl overflow-hidden lg:min-w-50 min-w-35",
         "bg-white/30 border border-white/40",
         "hover:scale-[1.02] hover:shadow-lg",
         "transition-all duration-200",
@@ -58,6 +59,6 @@ export function VideoCard({ video, onClick }: VideoCardProps) {
         </p>
         <p className="mt-1 text-xs text-text-muted">{video.createdAt}</p>
       </div>
-    </div>
+    </button>
   );
 }

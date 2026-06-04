@@ -46,11 +46,20 @@ export function NavItem({ item, isActive, isSidebarOpen }: NavItemProps) {
   return (
     <div className={wrapClass}>
       {item.kind === "link" ? (
-        <Link href={item.href} className={innerClass}>
+        <Link
+          href={item.href}
+          className={innerClass}
+          aria-current={isActive ? "page" : undefined}
+        >
           {content}
         </Link>
       ) : (
-        <button type="button" onClick={item.onClick} className={innerClass}>
+        <button
+          type="button"
+          onClick={item.onClick}
+          className={innerClass}
+          aria-label={item.label}
+        >
           {content}
         </button>
       )}

@@ -31,6 +31,8 @@ export function FooterDropdown({
 }: FooterDropdownProps) {
   return (
     <div
+      role="menu"
+      aria-hidden={!isOpen}
       className={cn(
         "absolute z-50 mb-1 overflow-hidden bg-white border shadow-lg bottom-full border-warm-200 rounded-xl transition-opacity duration-200",
         isOpen
@@ -42,13 +44,16 @@ export function FooterDropdown({
       {MENU_ITEMS.map((item) => (
         <button
           key={item.label}
+          role="menuitem"
           className={cn(
             "flex items-center w-full gap-3 transition-colors duration-150 text-text-primary hover:bg-peach-pastel/25",
             compact ? "px-3 py-2 text-xs gap-2" : "px-4 py-3 text-sm",
           )}
           onClick={onClose}
         >
-          <span className="text-text-primary/60">{item.icon}</span>
+          <span className="text-text-primary/60" aria-hidden="true">
+            {item.icon}
+          </span>
           {item.label}
         </button>
       ))}

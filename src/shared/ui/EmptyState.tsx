@@ -25,7 +25,10 @@ export function EmptyState({
       )}
     >
       {icon && (
-        <div className="text-text-muted opacity-40 [&>svg]:w-12 [&>svg]:h-12">
+        <div
+          className="text-text-muted opacity-40 [&>svg]:w-12 [&>svg]:h-12"
+          aria-hidden="true"
+        >
           {icon}
         </div>
       )}
