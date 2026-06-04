@@ -6,6 +6,7 @@ import {
   setAccessToken,
   clearAccessToken,
 } from "@/shared/model/authStore";
+import { env, ENDPOINTS } from "@/shared/config";
 
 // ─── Axios 타입 확장 ──────────────────────────────────────────────────────────
 // _retry: 재시도 요청임을 표시하는 커스텀 플래그 (무한루프 방지용)
@@ -27,7 +28,7 @@ interface RefreshResponse {
 // httpInstance와 분리하여 인터셉터를 타지 않도록 함
 // → 리프레시 요청 자체가 401이 나도 재귀 호출 발생 방지
 const authAxios = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: env.API_URL,
   timeout: 10_000,
   withCredentials: true, // RT HttpOnly 쿠키 자동 포함
   headers: { "Content-Type": "application/json" },
@@ -35,7 +36,7 @@ const authAxios = axios.create({
 
 // ─── 메인 http 인스턴스 ───────────────────────────────────────────────────────
 export const httpInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: env.API_URL,
   timeout: 10_000,
   headers: { "Content-Type": "application/json" },
   withCredentials: true, // RT HttpOnly 쿠키 자동 포함
@@ -131,8 +132,9 @@ httpInstance.interceptors.response.use(
     try {
       // Step 1: 인터셉터 없는 authAxios로 RT 기반 AT 재발급 요청
       //         RT는 HttpOnly 쿠키이므로 withCredentials 설정으로 자동 포함됨
-      const { data } =
-        await authAxios.post<RefreshResponse>("/api/auth/refresh");
+      const { data } = await authAxios.post<RefreshResponse>(
+        ENDPOINTS.auth.refresh,
+      );
       const newToken = data.accessToken;
 
       // Step 2: Zustand 메모리 스토어 업데이트

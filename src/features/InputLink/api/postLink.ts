@@ -1,4 +1,5 @@
 import { httpPost } from "@/shared/api";
+import { ENDPOINTS } from "@/shared/config";
 
 export interface PostLinkRequest {
   link: string;
@@ -11,4 +12,4 @@ export interface PostLinkResponse {
 }
 
 export const postLink = (body: PostLinkRequest): Promise<PostLinkResponse> =>
-  httpPost<PostLinkRequest, PostLinkResponse>("/api/link", body);
+  httpPost<PostLinkRequest, PostLinkResponse>(ENDPOINTS.link.post, body);

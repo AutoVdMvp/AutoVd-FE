@@ -1,4 +1,5 @@
 import { httpGet } from "@/shared/api";
+import { ENDPOINTS } from "@/shared/config";
 import type { User } from "../model/types";
 
 // 유저 엔티티 TanStack Query 키/함수 팩토리.
@@ -8,6 +9,6 @@ export const userQueries = {
 
   me: () => ({
     queryKey: [...userQueries.all(), "me"] as const,
-    queryFn: () => httpGet<User>("/api/auth/me"),
+    queryFn: () => httpGet<User>(ENDPOINTS.auth.me),
   }),
 };

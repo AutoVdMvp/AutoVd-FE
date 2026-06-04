@@ -1,4 +1,5 @@
 import { httpGet } from "@/shared/api";
+import { ENDPOINTS } from "@/shared/config";
 import type { Video } from "../model/types";
 
 // 비디오 관련 TanStack Query 키/함수 팩토리.
@@ -8,7 +9,7 @@ export const videoQueries = {
 
   list: () => ({
     queryKey: [...videoQueries.all(), "list"] as const,
-    queryFn: () => httpGet<Video[]>("/api/videos"),
+    queryFn: () => httpGet<Video[]>(ENDPOINTS.videos.list),
   }),
 
   detail: (id: string) => ({
