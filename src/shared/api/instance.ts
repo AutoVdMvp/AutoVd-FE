@@ -31,14 +31,20 @@ const authAxios = axios.create({
   baseURL: env.API_URL,
   timeout: 10_000,
   withCredentials: true, // RT HttpOnly 쿠키 자동 포함
-  headers: { "Content-Type": "application/json" },
+  headers: {
+    "Content-Type": "application/json",
+    "ngrok-skip-browser-warning": "true",
+  },
 });
 
 // ─── 메인 http 인스턴스 ───────────────────────────────────────────────────────
 export const httpInstance = axios.create({
   baseURL: env.API_URL,
   timeout: 10_000,
-  headers: { "Content-Type": "application/json" },
+  headers: {
+    "Content-Type": "application/json",
+    "ngrok-skip-browser-warning": "true",
+  },
   withCredentials: true, // RT HttpOnly 쿠키 자동 포함
 });
 

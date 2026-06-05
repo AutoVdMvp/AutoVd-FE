@@ -1,65 +1,15 @@
 "use client";
 
-import { lazy, Suspense, useState } from "react";
-import { VideoCard, VideoCardSkeleton, type Video } from "@/entities/video";
+import { Suspense } from "react";
+import { useRouter } from "next/navigation";
+import {
+  VideoCard,
+  VideoCardSkeleton,
+  MOCK_VIDEOS,
+  type Video,
+} from "@/entities/video";
 import { EmptyState } from "@/shared/ui";
 import { Icons } from "@/shared/icons";
-
-// 초기 번들에서 분리 — 클릭 시 첫 로드
-const VideoModal = lazy(() =>
-  import("@/widgets/video-modal").then((m) => ({ default: m.VideoModal })),
-);
-
-const MOCK_VIDEOS: Video[] = [
-  {
-    id: "1",
-    title: "자동화 영상 #1",
-    thumbnailUrl: "",
-    videoUrl: "",
-    duration: 185,
-    createdAt: "2025-01-15",
-  },
-  {
-    id: "2",
-    title: "자동화 영상 #2",
-    thumbnailUrl: "",
-    videoUrl: "",
-    duration: 242,
-    createdAt: "2025-01-16",
-  },
-  {
-    id: "3",
-    title: "자동화 영상 #3",
-    thumbnailUrl: "",
-    videoUrl: "",
-    duration: 98,
-    createdAt: "2025-01-17",
-  },
-  {
-    id: "4",
-    title: "자동화 영상 #4",
-    thumbnailUrl: "",
-    videoUrl: "",
-    duration: 311,
-    createdAt: "2025-01-18",
-  },
-  {
-    id: "5",
-    title: "자동화 영상 #5",
-    thumbnailUrl: "",
-    videoUrl: "",
-    duration: 157,
-    createdAt: "2025-01-19",
-  },
-  {
-    id: "6",
-    title: "자동화 영상 #6",
-    thumbnailUrl: "",
-    videoUrl: "",
-    duration: 204,
-    createdAt: "2025-01-20",
-  },
-];
 
 const SKELETON_COUNT = 8;
 
@@ -97,27 +47,26 @@ function VideoGrid({ onSelect }: { onSelect: (video: Video) => void }) {
   );
 }
 
+// 영상 목록 페이지. 카드 클릭 시 /videos/[id] 로 이동한다.
 export function VideosView() {
-  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
+  const router = useRouter();
 
   return (
     <div className="flex flex-col h-full px-5 pt-5">
       <h1 className="text-xl font-bold shrink-0">영상 목록</h1>
-      <div className="h-px my-3 bg-linear-to-br from-peach-pastel to-rose-pastel shrink-0" />
+      <div
+        className="h-px my-3 bg-linear-to-br from-peach-pastel to-rose-pastel shrink-0"
+        aria-hidden="true"
+      />
       <div className="flex-1 min-h-0 p-3">
         <div className="h-full p-2 overflow-y-auto rounded-lg glaze-bg scrollbar-none">
           <Suspense fallback={<VideoGridSkeleton />}>
-            <VideoGrid onSelect={setSelectedVideo} />
+            <VideoGrid
+              onSelect={(video) => router.push(`/videos/${video.id}`)}
+            />
           </Suspense>
         </div>
       </div>
-
-      <Suspense fallback={null}>
-        <VideoModal
-          video={selectedVideo}
-          onClose={() => setSelectedVideo(null)}
-        />
-      </Suspense>
     </div>
   );
 }
