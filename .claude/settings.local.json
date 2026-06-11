@@ -10,7 +10,10 @@
       "Bash(grep -r \"\\\\`/\" src --include=\"*.ts\" --include=\"*.tsx\")",
       "Bash(grep -E \"\\\\$\\\\{|searchParams|params\")",
       "Bash(grep -rn \"\\\\\\\\\\\\$\\\\{\" src --include=\"*.ts\" --include=\"*.tsx\")",
-      "Bash(grep -rn '\\\\$\\\\{' src --include=\"*.ts\" --include=\"*.tsx\")"
+      "Bash(grep -rn '\\\\$\\\\{' src --include=\"*.ts\" --include=\"*.tsx\")",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\0dytp\\\\OneDrive\\\\Desktop\\\\개발폴더\\\\AutoVd-FE\\\\src\\\\app\" -Recurse)",
+      "Bash(Select-Object FullName, PSIsContainer)",
+      "Bash(Sort-Object FullName)"
     ]
   }
 }

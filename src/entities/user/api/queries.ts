@@ -9,6 +9,6 @@ export const userQueries = {
 
   me: () => ({
     queryKey: [...userQueries.all(), "me"] as const,
-    queryFn: () => httpGet<User>(ENDPOINTS.auth.me),
+    queryFn: () => httpGet<User>(ENDPOINTS.users.me),
   }),
 };
