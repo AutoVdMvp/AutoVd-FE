@@ -15,6 +15,7 @@ export async function httpPost<TBody, TResponse>(
   body: TBody,
 ): Promise<TResponse> {
   const { data } = await httpInstance.post<TResponse>(url, body);
+  console.log("POST 요청 성공:", { url, body, response: data });
   return data;
 }
 

@@ -1,6 +1,5 @@
 "use client";
 
-import { useGoogleLogin as useGoogleOAuth } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import { setAccessToken } from "@/shared/model/authStore";
 import { useMutation } from "@/shared/hooks";
@@ -9,7 +8,7 @@ import { authMutations } from "../api/mutations";
 export function useGoogleLogin() {
   const router = useRouter();
 
-  const { mutate, isPending } = useMutation({
+  return useMutation({
     ...authMutations.googleLogin(),
     onSuccess: ({ access_token, refresh_token }) => {
       setAccessToken(access_token);
@@ -18,11 +17,4 @@ export function useGoogleLogin() {
       router.push("/");
     },
   });
-
-  const login = useGoogleOAuth({
-    onSuccess: ({ access_token }) => mutate({ credential: access_token }),
-    flow: "implicit",
-  });
-
-  return { login, isPending };
 }
