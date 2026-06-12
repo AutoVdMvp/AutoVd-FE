@@ -1,10 +1,7 @@
 "use client";
 
+import { useGoogleLogin } from "../model/useGoogleLogin";
 import { SocialLoginButton } from "./SocialLoginButton";
-
-export interface GoogleLoginButtonProps {
-  onClick?: () => void;
-}
 
 const GoogleIcon = () => (
   <svg
@@ -33,14 +30,17 @@ const GoogleIcon = () => (
   </svg>
 );
 
-export function GoogleLoginButton({ onClick }: GoogleLoginButtonProps) {
+export function GoogleLoginButton() {
+  const { login, isPending } = useGoogleLogin();
+
   return (
     <SocialLoginButton
-      onClick={onClick}
+      onClick={() => login()}
+      disabled={isPending}
       className="bg-white border border-warm-300 text-text-primary"
       icon={<GoogleIcon />}
     >
-      Google로 계속하기
+      {isPending ? "로그인 중..." : "Google로 계속하기"}
     </SocialLoginButton>
   );
 }
