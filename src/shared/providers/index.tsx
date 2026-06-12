@@ -1,8 +1,10 @@
 "use client";
 
 import { ReactNode } from "react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryProvider } from "./query-provider";
 import { Toaster } from "@/shared/ui";
+import { env } from "@/shared/config";
 
 interface ProvidersProps {
   children: ReactNode;
@@ -12,7 +14,9 @@ interface ProvidersProps {
 export function Providers({ children }: ProvidersProps) {
   return (
     <QueryProvider>
-      {children}
+      <GoogleOAuthProvider clientId={env.GOOGLE_CLIENT_ID}>
+        {children}
+      </GoogleOAuthProvider>
       <Toaster richColors position="top-right" />
     </QueryProvider>
   );
