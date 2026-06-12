@@ -9,9 +9,17 @@ interface AuthState {
   clearAccessToken: () => void;
 }
 
+// ─── 쿠키에서 AT 읽기 (SSR 안전) ─────────────────────────────────────────────
+// 모듈 로드 시점에 쿠키를 읽어 초기값으로 사용 → 새로고침 후에도 인증 유지
+function readAccessTokenCookie(): string | null {
+  if (typeof document === "undefined") return null;
+  const match = document.cookie.match(/(^| )access_token=([^;]+)/);
+  return match ? match[2] : null;
+}
+
 // ─── Zustand Store ────────────────────────────────────────────────────────────
-export const useAuthStore = create<AuthState>((set) => ({
-  accessToken: null,
+export const useAuthStore = create<AuthState>()((set) => ({
+  accessToken: readAccessTokenCookie(),
   setAccessToken: (token) => set({ accessToken: token }),
   clearAccessToken: () => set({ accessToken: null }),
 }));

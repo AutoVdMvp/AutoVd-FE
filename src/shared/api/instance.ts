@@ -167,7 +167,7 @@ httpInstance.interceptors.response.use(
 
       // 로그인 페이지로 강제 이동
       // useRouter는 React hook이라 인터셉터에서 호출 불가 → window.location 사용
-      // window.location.href = "/login"; // TODO: 테스트 중 비활성화
+      // window.location.href = "/login";
 
       return Promise.reject(normalizeError(refreshError));
     } finally {

@@ -14,12 +14,15 @@
       "Bash(git rm *)",
       "Bash(npm install *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(del \"c:\\\\Users\\\\0dytp\\\\OneDrive\\\\Desktop\\\\개발폴더\\\\AutoVd-FE\\\\src\\\\shared\\\\model\\\\AuthInitializer.tsx\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\�ڿ��\\���߸���\\autovd-fe\\src\\shared",
       "c:\\Users\\�ڿ��\\���߸���\\autovd-fe\\src",
-      "c:\\Users\\�ڿ��\\���߸���\\autovd-fe\\src\\shared\\api\\queries"
+      "c:\\Users\\�ڿ��\\���߸���\\autovd-fe\\src\\shared\\api\\queries",
+      "c:\\Users\\0dytp\\OneDrive\\Desktop\\��������\\AutoVd-FE\\src\\shared\\model",
+      "C:\\Users\\0dytp\\.claude\\memory"
     ],
     "Write": [
       {
