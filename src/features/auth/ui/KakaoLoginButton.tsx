@@ -1,10 +1,7 @@
 "use client";
 
+import { env, ENDPOINTS } from "@/shared/config";
 import { SocialLoginButton } from "./SocialLoginButton";
-
-export interface KakaoLoginButtonProps {
-  onClick?: () => void;
-}
 
 const KakaoIcon = () => (
   <svg
@@ -22,10 +19,12 @@ const KakaoIcon = () => (
   </svg>
 );
 
-export function KakaoLoginButton({ onClick }: KakaoLoginButtonProps) {
+export function KakaoLoginButton() {
   return (
     <SocialLoginButton
-      onClick={onClick}
+      onClick={() => {
+        window.location.href = env.API_URL + ENDPOINTS.auth.kakao.login;
+      }}
       className="bg-[#FEE500] text-[#3C1E1E]"
       icon={<KakaoIcon />}
     >
