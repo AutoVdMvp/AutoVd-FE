@@ -1,10 +1,28 @@
 "use client";
 
+import { useEffect } from "react";
 import { ArticleEditor } from "@/widgets/article-editor";
 import { useCurrentUser } from "@/entities/user";
+import { useAuthStore } from "@/shared/model/authStore";
 
 export function HomeView() {
   const { data: user, isLoading, isError } = useCurrentUser();
+  const accessToken = useAuthStore((s) => s.accessToken);
+
+  useEffect(() => {
+    console.group("🔐 Token Debug");
+    console.log("AT (Zustand):", accessToken);
+    console.log(
+      "AT (Cookie):",
+      document.cookie.match(/(^| )access_token=([^;]+)/)?.[2] ?? "없음",
+    );
+    console.log(
+      "RT (Cookie):",
+      document.cookie.match(/(^| )refresh_token=([^;]+)/)?.[2] ??
+        "없음 (HttpOnly면 JS에서 보이지 않음)",
+    );
+    console.groupEnd();
+  }, [accessToken]);
 
   return (
     <div className="flex flex-col items-center min-h-full">
