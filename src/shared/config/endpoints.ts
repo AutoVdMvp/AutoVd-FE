@@ -3,6 +3,10 @@ export const ENDPOINTS = {
   auth: {
     refresh: "/api/v1/auth/refresh",
     google: "/api/v1/auth/google",
+    kakao: {
+      login: "/api/v1/auth/kakao/login",
+      callback: "/api/v1/auth/kakao/callback",
+    },
   },
   users: {
     me: "/api/v1/users/me",
