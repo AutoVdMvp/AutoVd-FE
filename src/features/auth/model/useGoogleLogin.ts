@@ -10,10 +10,9 @@ export function useGoogleLogin() {
 
   return useMutation({
     ...authMutations.googleLogin(),
-    onSuccess: ({ access_token, refresh_token }) => {
+    onSuccess: ({ access_token }) => {
       setAccessToken(access_token);
       document.cookie = `access_token=${access_token}; path=/; SameSite=Lax`;
-      document.cookie = `refresh_token=${refresh_token}; path=/; SameSite=Lax`;
       router.push("/");
     },
   });

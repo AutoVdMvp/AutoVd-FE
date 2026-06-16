@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { ArticleEditor } from "@/widgets/article-editor";
 import { useCurrentUser } from "@/entities/user";
 import { useAuthStore } from "@/shared/model/authStore";
+import { RefreshTestButton } from "@/shared/api/testRefresh";
 
 export function HomeView() {
   const { data: user, isLoading, isError } = useCurrentUser();
@@ -26,6 +27,7 @@ export function HomeView() {
 
   return (
     <div className="flex flex-col items-center min-h-full">
+      <RefreshTestButton />
       <div className="flex flex-col items-center gap-4 pt-[30vh] pb-16 w-full">
         <h1 className="text-xl font-bold">AutoVD</h1>
 
