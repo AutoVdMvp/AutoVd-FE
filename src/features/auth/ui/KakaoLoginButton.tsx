@@ -23,7 +23,8 @@ export function KakaoLoginButton() {
   return (
     <SocialLoginButton
       onClick={() => {
-        window.location.href = env.API_URL + ENDPOINTS.auth.kakao.login;
+        const redirectUri = `${window.location.origin}/kakao/callback`;
+        window.location.href = `${env.API_URL}${ENDPOINTS.auth.kakao.login}?redirect_uri=${encodeURIComponent(redirectUri)}`;
       }}
       className="bg-[#FEE500] text-[#3C1E1E]"
       icon={<KakaoIcon />}

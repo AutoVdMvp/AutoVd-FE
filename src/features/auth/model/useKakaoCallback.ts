@@ -6,11 +6,11 @@ import { useQuery } from "@/shared/hooks";
 import { setAccessToken } from "@/shared/model/authStore";
 import { kakaoCallbackQuery } from "../api/kakaoCallbackQuery";
 
-export function useKakaoCallback(code: string | null) {
+export function useKakaoCallback(code: string | null, redirectUri: string) {
   const router = useRouter();
 
   const query = useQuery({
-    ...kakaoCallbackQuery(code ?? ""),
+    ...kakaoCallbackQuery(code ?? "", redirectUri),
     enabled: !!code,
   });
 
