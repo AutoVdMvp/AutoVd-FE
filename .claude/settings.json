@@ -17,14 +17,16 @@
       "Bash(git commit *)",
       "Bash(del \"c:\\\\Users\\\\0dytp\\\\OneDrive\\\\Desktop\\\\개발폴더\\\\AutoVd-FE\\\\src\\\\shared\\\\model\\\\AuthInitializer.tsx\")",
       "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\(JSON.stringify\\(p.prettier || 'none'\\)\\)\")",
-      "Bash(npx prettier *)"
+      "Bash(npx prettier *)",
+      "Bash(Remove-Item \"c:\\\\Users\\\\0dytp\\\\OneDrive\\\\Desktop\\\\개발폴더\\\\AutoVd-FE\\\\src\\\\entities\\\\video\\\\model\\\\mockData.ts\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\�ڿ��\\���߸���\\autovd-fe\\src\\shared",
       "c:\\Users\\�ڿ��\\���߸���\\autovd-fe\\src",
       "c:\\Users\\�ڿ��\\���߸���\\autovd-fe\\src\\shared\\api\\queries",
       "c:\\Users\\0dytp\\OneDrive\\Desktop\\��������\\AutoVd-FE\\src\\shared\\model",
-      "C:\\Users\\0dytp\\.claude\\memory"
+      "C:\\Users\\0dytp\\.claude\\memory",
+      "c:\\Users\\0dytp\\OneDrive\\Desktop\\��������\\AutoVd-FE\\src\\entities\\video\\model"
     ],
     "Write": [
       {

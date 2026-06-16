@@ -2,17 +2,10 @@
 
 import { cn } from "@/shared/lib/utils";
 import type { Video } from "../model/types";
-import Image from "next/image";
 
 interface VideoCardProps {
   video: Video;
   onClick: (video: Video) => void;
-}
-
-function formatDuration(seconds: number): string {
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
 const THUMBNAIL_GRADIENTS = [
@@ -24,9 +17,22 @@ const THUMBNAIL_GRADIENTS = [
   "from-warm-200 to-peach-pastel",
 ];
 
+const STATUS_STYLES: Record<string, string> = {
+  queued: "bg-yellow-500/80",
+  processing: "bg-blue-500/80",
+  done: "bg-green-500/80",
+};
+
+function getGradientIndex(id: string): number {
+  return (
+    id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) %
+    THUMBNAIL_GRADIENTS.length
+  );
+}
+
 export function VideoCard({ video, onClick }: VideoCardProps) {
-  const gradient =
-    THUMBNAIL_GRADIENTS[parseInt(video.id, 10) % THUMBNAIL_GRADIENTS.length];
+  const gradient = THUMBNAIL_GRADIENTS[getGradientIndex(video.id)];
+  const statusStyle = STATUS_STYLES[video.status] ?? "bg-black/60";
 
   return (
     <button
@@ -40,24 +46,21 @@ export function VideoCard({ video, onClick }: VideoCardProps) {
       )}
     >
       <div className={cn("relative aspect-video bg-linear-to-br", gradient)}>
-        {video.thumbnailUrl && (
-          <Image
-            src={video.thumbnailUrl}
-            alt={video.title}
-            className="absolute inset-0 object-cover w-full h-full"
-          />
-        )}
-
-        <div className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-1.5 py-0.5 rounded">
-          {formatDuration(video.duration)}
+        <div
+          className={cn(
+            "absolute bottom-2 right-2 text-white text-xs px-1.5 py-0.5 rounded",
+            statusStyle,
+          )}
+        >
+          {video.status}
         </div>
       </div>
 
       <div className="p-3">
         <p className="text-sm font-medium truncate text-text-primary">
-          {video.title}
+          {video.original_url}
         </p>
-        <p className="mt-1 text-xs text-text-muted">{video.createdAt}</p>
+        <p className="mt-1 text-xs text-text-muted">{video.created_at}</p>
       </div>
     </button>
   );

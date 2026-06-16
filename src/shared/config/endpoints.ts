@@ -12,8 +12,8 @@ export const ENDPOINTS = {
     me: "/api/v1/users/me",
   },
   videos: {
-    list: "/api/v1/videos",
-    detail: (id: string) => `/api/v1/videos/${id}`,
+    list: "/api/v1/projects",
+    detail: (id: string) => `/api/v1/projects/${id}`,
   },
   link: {
     post: "/api/v1/link",

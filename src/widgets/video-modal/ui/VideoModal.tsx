@@ -17,10 +17,10 @@ export function VideoModal({ video, onClose }: VideoModalProps) {
         className="p-0 max-w-2xl rounded-2xl overflow-hidden ring-0 gap-0 glaze-bg"
         overlayClassName="bg-black/60 backdrop-blur-sm"
         showCloseButton={false}
-        aria-label={video?.title ?? "영상 재생"}
+        aria-label={video?.original_url ?? "영상 재생"}
       >
         <DialogTitle className="sr-only">
-          {video?.title ?? "영상 재생"}
+          {video?.original_url ?? "영상 재생"}
         </DialogTitle>
         {video && (
           <>
@@ -32,9 +32,7 @@ export function VideoModal({ video, onClose }: VideoModalProps) {
               preload="none"
               className="block w-full bg-black aspect-video"
             >
-              {video.videoUrl && (
-                <source src={video.videoUrl} type="video/mp4" />
-              )}
+              {video.vd_url && <source src={video.vd_url} type="video/mp4" />}
               <track kind="captions" />
               영상을 재생할 수 없습니다.
             </video>
@@ -42,16 +40,16 @@ export function VideoModal({ video, onClose }: VideoModalProps) {
             <div className="flex items-center justify-between gap-4 p-4">
               <div className="min-w-0">
                 <h2 className="font-bold truncate text-text-primary">
-                  {video.title}
+                  {video.original_url}
                 </h2>
                 <p className="text-xs text-text-muted mt-0.5">
-                  {video.createdAt}
+                  {video.created_at}
                 </p>
               </div>
 
               <a
-                href={video.videoUrl || "#"}
-                download={video.title}
+                href={video.vd_url || "#"}
+                download
                 className={cn(
                   "flex items-center gap-2 shrink-0",
                   "px-4 py-2 rounded-lg text-sm font-medium",

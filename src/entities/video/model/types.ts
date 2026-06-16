@@ -1,8 +1,8 @@
 export interface Video {
   id: string;
-  title: string;
-  thumbnailUrl: string;
-  videoUrl: string;
-  duration: number; // seconds
-  createdAt: string;
+  user_id: string;
+  original_url: string;
+  status: string;
+  vd_url: string;
+  created_at: string;
 }

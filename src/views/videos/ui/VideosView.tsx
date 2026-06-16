@@ -2,10 +2,11 @@
 
 import { Suspense } from "react";
 import { useRouter } from "next/navigation";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import {
   VideoCard,
   VideoCardSkeleton,
-  MOCK_VIDEOS,
+  videoQueries,
   type Video,
 } from "@/entities/video";
 import { EmptyState } from "@/shared/ui";
@@ -23,10 +24,8 @@ function VideoGridSkeleton() {
   );
 }
 
-// API 연결 시 이 컴포넌트 안에서 useSuspenseQuery 사용
 function VideoGrid({ onSelect }: { onSelect: (video: Video) => void }) {
-  // const { data: videos } = useSuspenseQuery(videoQueries.list())
-  const videos = MOCK_VIDEOS;
+  const { data: videos } = useSuspenseQuery(videoQueries.list());
 
   if (videos.length === 0) {
     return (
@@ -47,7 +46,6 @@ function VideoGrid({ onSelect }: { onSelect: (video: Video) => void }) {
   );
 }
 
-// 영상 목록 페이지. 카드 클릭 시 /videos/[id] 로 이동한다.
 export function VideosView() {
   const router = useRouter();
 
