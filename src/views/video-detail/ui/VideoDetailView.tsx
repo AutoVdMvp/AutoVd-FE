@@ -12,7 +12,16 @@ interface VideoDetailViewProps {
 }
 
 function VideoDetailContent({ id }: { id: string }) {
-  const { data: video } = useSuspenseQuery(videoQueries.detail(id));
+  const { data: videos } = useSuspenseQuery(videoQueries.list());
+  const video = videos.find((v) => v.id === id);
+
+  if (!video) {
+    return (
+      <div className="flex items-center justify-center h-full text-sm text-text-muted">
+        영상을 찾을 수 없습니다.
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-full min-h-0 gap-3 px-5 pt-4">
@@ -38,7 +47,7 @@ function VideoDetailContent({ id }: { id: string }) {
 
         <div className="flex flex-col flex-1 min-w-0 gap-3 py-1">
           <div>
-            <h1 className="font-bold leading-snug text-text-primary truncate">
+            <h1 className="font-bold leading-snug truncate text-text-primary">
               {video.original_url}
             </h1>
             <p className="mt-1 text-xs text-text-muted">{video.created_at}</p>
