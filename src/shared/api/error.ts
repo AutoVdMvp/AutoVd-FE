@@ -1,5 +1,17 @@
 import axios from "axios";
 
+interface ValidationErrorItem {
+  loc: [string, number];
+  msg: string;
+  type: string;
+  input: string;
+  ctx: Record<string, unknown>;
+}
+
+interface ValidationErrorBody {
+  detail: ValidationErrorItem[];
+}
+
 export type ApiErrorCode =
   | "NETWORK_ERROR"
   | "TIMEOUT"
@@ -61,13 +73,16 @@ export function normalizeError(error: unknown): ApiError {
       return new ApiError({ code: "FORBIDDEN", message, status });
     if (status === 404)
       return new ApiError({ code: "NOT_FOUND", message, status });
-    if (status === 422)
+    if (status === 422) {
+      const body = error.response.data as ValidationErrorBody;
+      const firstMsg = body?.detail?.[0]?.msg ?? message;
       return new ApiError({
         code: "VALIDATION_ERROR",
-        message,
+        message: firstMsg,
         status,
-        details,
+        details: body?.detail,
       });
+    }
     if (status >= 500)
       return new ApiError({ code: "SERVER_ERROR", message, status });
 

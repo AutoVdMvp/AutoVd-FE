@@ -1,10 +1,18 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { ArticleEditor } from "@/widgets/article-editor";
 import { useCurrentUser } from "@/entities/user";
+import { usePostLink } from "@/features/InputLink";
 
 export function HomeView() {
+  const router = useRouter();
   const { data: user, isLoading, isError } = useCurrentUser();
+  const { mutate: createProject, isPending } = usePostLink({
+    onSuccess: () => router.push("/videos"),
+    onError: (error) =>
+      console.error("[createProject]", error.code, error.message),
+  });
 
   return (
     <div className="flex flex-col items-center min-h-full">
@@ -26,7 +34,10 @@ export function HomeView() {
 
         <div className="flex flex-col m-3.5 gap-3">
           <div className="relative">
-            <ArticleEditor onSubmit={(text) => console.log(text)} />
+            <ArticleEditor
+              onSubmit={(url) => createProject({ article_url: url })}
+              disabled={isPending}
+            />
           </div>
         </div>
       </div>

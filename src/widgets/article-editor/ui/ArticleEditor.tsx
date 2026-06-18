@@ -9,7 +9,7 @@ import { urlSchema } from "@/shared/lib/validators";
 import type { ArticleEditorProps } from "../model/types";
 
 // 기사 링크를 입력받아 제출하는 에디터. URL 형식 검증을 포함한다.
-export function ArticleEditor({ onSubmit }: ArticleEditorProps) {
+export function ArticleEditor({ onSubmit, disabled }: ArticleEditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
 
   const form = useForm({
@@ -57,7 +57,8 @@ export function ArticleEditor({ onSubmit }: ArticleEditorProps) {
         <Button
           size="icon"
           onClick={() => form.handleSubmit()}
-          className="text-white rounded-full w-9 h-9 bg-peach-deep/50 hover:bg-peach-deep active:scale-95"
+          disabled={disabled}
+          className="text-white rounded-full w-9 h-9 bg-peach-deep/50 hover:bg-peach-deep active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Icons.Enter className="-translate-x-0.5 w-7 h-7" />
         </Button>

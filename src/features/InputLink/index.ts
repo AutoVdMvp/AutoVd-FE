@@ -1,2 +1,2 @@
 export { usePostLink } from "./hooks/usePostLink";
-export type { PostLinkRequest, PostLinkResponse } from "./api/postLink";
+export type { CreateProjectRequest } from "./api/postLink";

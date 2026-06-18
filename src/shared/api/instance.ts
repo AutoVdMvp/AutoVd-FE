@@ -74,10 +74,12 @@ function processQueue(error: unknown, token: string | null): void {
 // 미들웨어(Edge Runtime)는 Zustand에 접근 불가 → access_token 쿠키로 인증 확인
 // 백엔드가 Set-Cookie 헤더로 직접 쿠키를 설정한다면 아래 두 함수는 생략 가능
 function syncAccessTokenCookie(token: string): void {
+  if (typeof document === "undefined") return;
   document.cookie = `access_token=${token}; path=/; SameSite=Lax`;
 }
 
 function clearAccessTokenCookie(): void {
+  if (typeof document === "undefined") return;
   document.cookie = "access_token=; path=/; max-age=0";
 }
 

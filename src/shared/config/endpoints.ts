@@ -14,8 +14,6 @@ export const ENDPOINTS = {
   videos: {
     list: "/api/v1/projects",
     detail: (id: string) => `/api/v1/projects/${id}`,
-  },
-  link: {
-    post: "/api/v1/link",
+    create: "/api/v1/projects/create",
   },
 } as const;
